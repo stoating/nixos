@@ -15,7 +15,6 @@
 
     boot.initrd.luks.devices."luks-e13d7e39-2fc5-4ce4-8f3c-420e2197a26b".device = "/dev/disk/by-uuid/e13d7e39-2fc5-4ce4-8f3c-420e2197a26b";
     networking.hostName = "nixos"; # Define your hostname.
-    networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
     nix = {
       settings = {
@@ -97,6 +96,7 @@
         NIXOS_OZONE_WL = "1"; # for vscode
       };
       systemPackages = with pkgs; [
+        cifs-utils # for nas mount
         discord
         firefox
         git
@@ -107,6 +107,51 @@
     };
 
     programs.firefox.enable = true;
+
+    # Create mount point directories (for NAS)
+    systemd.tmpfiles.rules = [
+      "d /mnt/nas 0755 zack users -"
+      "d /home/zack/nas 0755 zack users -"
+    ];
+
+    # Mount Synology NAS share via SMB
+    # Credentials file must be created manually at /etc/smb-credentials:
+    #   username=Zachary
+    #   password=YOUR_PASSWORD
+    # Then: sudo chmod 600 /etc/smb-credentials
+    fileSystems."/mnt/nas" = {
+      device = "//192.168.178.145/homes";
+      fsType = "cifs";
+      options = [
+        "credentials=/etc/smb-credentials"
+        "uid=1000"
+        "gid=100"
+        "x-systemd.automount"
+        "noauto"
+        "x-systemd.idle-timeout=60"
+        "x-systemd.device-timeout=5s"
+        "x-systemd.mount-timeout=5s"
+      ];
+    };
+
+    # Bind mount so the share is also accessible at ~/nas
+    # noauto + x-systemd.automount ensures it only mounts on access, after the CIFS mount is ready
+    fileSystems."/home/zack/nas" = {
+      device = "/mnt/nas";
+      fsType = "none";
+      options = [ "bind" "noauto" "x-systemd.automount" "x-systemd.requires-mounts-for=/mnt/nas" ];
+    };
+
+    # Required for Synology Drive tray / mDNS discovery
+    services.avahi = {
+      enable = true;
+      nssmdns4 = true;
+      openFirewall = true;
+    };
+
+    # GNOME Keyring for credential storage (used by Synology Drive)
+    services.gnome.gnome-keyring.enable = true;
+    security.pam.services.gdm.enableGnomeKeyring = true;
 
     system.stateVersion = "25.11";
   };
