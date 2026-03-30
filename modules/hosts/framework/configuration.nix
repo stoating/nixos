@@ -91,6 +91,7 @@
       isNormalUser = true;
       description = "zack";
       extraGroups = [ "networkmanager" "wheel" ];
+      shell = pkgs.zsh;
       packages = with pkgs; [
       ];
     };
@@ -105,16 +106,19 @@
         cifs-utils # for nas mount
         discord
         firefox
+        ghostty
         git
         google-cursor
         keepassxc
         synology-drive-client
         vim
         vscode
+        zsh
         ];
     };
 
     programs.firefox.enable = true;
+    programs.zsh.enable = true;
 
     # Create mount point directories (for NAS)
     systemd.tmpfiles.rules = [
