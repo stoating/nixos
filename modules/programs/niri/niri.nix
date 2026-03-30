@@ -20,6 +20,15 @@
 
         layout.gaps = 5;
 
+        extraConfig = ''
+          output "DP-1" {
+            position x=0 y=0
+          }
+          output "eDP-2" {
+            position x=1920 y=0
+          }
+        '';
+
         binds = {
           "Mod+Return".spawn-sh = lib.getExe pkgs.kitty;
           "Mod+Q".close-window = null;

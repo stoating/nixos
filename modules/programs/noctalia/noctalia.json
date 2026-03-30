@@ -2,7 +2,7 @@
   "settings": {
     "settingsVersion": 39,
     "bar": {
-      "position": "left",
+      "position": "top",
       "monitors": [],
       "density": "compact",
       "showOutline": false,
@@ -461,7 +461,7 @@
     },
     "colorSchemes": {
       "useWallpaperColors": false,
-      "predefinedScheme": "Nord",
+      "predefinedScheme": "Eldritch",
       "darkMode": true,
       "schedulingMode": "off",
       "manualSunrise": "06:30",
@@ -526,27 +526,43 @@
     "barVisible": true,
     "lockScreenActive": false,
     "wallpapers": {
+      "DP-1": "/home/zack/images/desktop/wallpaper.jpg",
+      "eDP-2": "/home/zack/images/desktop/wallpaper.jpg",
       "winit": "/home/zack/images/desktop/wallpaper.jpg"
     },
     "desktopWidgetsEditMode": false,
     "display": {
-      "winit": {
-        "name": "winit",
+      "DP-1": {
+        "name": "DP-1",
         "scale": 1,
-        "width": 1280,
-        "height": 800,
+        "width": 1920,
+        "height": 1080,
         "x": 0,
         "y": 0,
-        "physical_width": 0,
-        "physical_height": 0,
+        "physical_width": 600,
+        "physical_height": 340,
         "refresh_rate": 60000,
         "vrr_supported": false,
         "vrr_enabled": false,
-        "transform": "Flipped180"
+        "transform": "Normal"
+      },
+      "eDP-2": {
+        "name": "eDP-2",
+        "scale": 1.5,
+        "width": 1706,
+        "height": 1066,
+        "x": 1920,
+        "y": 0,
+        "physical_width": 340,
+        "physical_height": 220,
+        "refresh_rate": 165000,
+        "vrr_supported": true,
+        "vrr_enabled": false,
+        "transform": "Normal"
       }
     },
     "notificationsState": {
-      "lastSeenTs": 1774705958000
+      "lastSeenTs": 1774903975000
     },
     "changelogState": {
       "lastSeenVersion": "v4.0.0"
