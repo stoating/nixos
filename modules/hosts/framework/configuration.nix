@@ -69,7 +69,13 @@
     console.keyMap = "de";
 
     # Enable CUPS to print documents.
-    services.printing.enable = true;
+    services.printing = {
+      enable = true;
+      browsing = true;
+      drivers = with pkgs; [
+        cups-filters   # IPP Everywhere / driverless support
+      ];
+    };
 
     # Enable sound with pipewire.
     services.pulseaudio.enable = false;
