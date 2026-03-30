@@ -97,6 +97,7 @@
         NIXOS_OZONE_WL = "1"; # for vscode
       };
       systemPackages = with pkgs; [
+        discord
         firefox
         git
         vim
