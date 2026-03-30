@@ -100,6 +100,7 @@
         discord
         firefox
         git
+        keepassxc
         synology-drive-client
         vim
         vscode
