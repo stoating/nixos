@@ -408,7 +408,9 @@
     },
     "notifications": {
       "enabled": true,
-      "monitors": [],
+      "monitors": [
+        "eDP-2"
+      ],
       "location": "top_right",
       "overlayLayer": true,
       "backgroundOpacity": 1,

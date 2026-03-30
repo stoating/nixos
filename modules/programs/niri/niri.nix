@@ -21,10 +21,16 @@
         layout.gaps = 5;
 
         extraConfig = ''
+          cursor {
+            xcursor-theme "Adwaita"
+            xcursor-size 16
+          }
+
           output "DP-1" {
             position x=0 y=0
           }
           output "eDP-2" {
+            scale 2.0
             position x=1920 y=0
           }
         '';
