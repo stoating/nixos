@@ -80,24 +80,11 @@
         "type": "github"
       }
     },
-    "noctalia-config": {
-      "flake": false,
-      "locked": {
-        "path": "../nixos-programs/noctalia",
-        "type": "path"
-      },
-      "original": {
-        "path": "../nixos-programs/noctalia",
-        "type": "path"
-      },
-      "parent": []
-    },
     "root": {
       "inputs": {
         "flake-parts": "flake-parts",
         "import-tree": "import-tree",
         "nixpkgs": "nixpkgs",
-        "noctalia-config": "noctalia-config",
         "wrapper-modules": "wrapper-modules"
       }
     },
