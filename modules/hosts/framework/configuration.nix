@@ -15,7 +15,7 @@
 
     boot.initrd.luks.devices."luks-e13d7e39-2fc5-4ce4-8f3c-420e2197a26b".device = "/dev/disk/by-uuid/e13d7e39-2fc5-4ce4-8f3c-420e2197a26b";
     networking.hostName = "nixos"; # Define your hostname.
-    # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+    networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
     nix = {
       settings = {
@@ -100,6 +100,7 @@
         discord
         firefox
         git
+        synology-drive-client
         vim
         vscode
         ];
