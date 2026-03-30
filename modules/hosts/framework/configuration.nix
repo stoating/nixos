@@ -106,6 +106,7 @@
         discord
         firefox
         git
+        google-cursor
         keepassxc
         synology-drive-client
         vim

@@ -22,7 +22,7 @@
 
         extraConfig = ''
           cursor {
-            xcursor-theme "Adwaita"
+            xcursor-theme "GoogleDot-Black"
             xcursor-size 16
           }
 
@@ -30,7 +30,7 @@
             position x=0 y=0
           }
           output "eDP-2" {
-            scale 2.0
+            scale 1.5
             position x=1920 y=0
           }
         '';
