@@ -114,6 +114,7 @@
         synology-drive-client
         vim
         vscode
+        youtube-music
         yq-go
         zsh
         ];
