@@ -109,10 +109,12 @@
         ghostty
         git
         google-cursor
+        jq
         keepassxc
         synology-drive-client
         vim
         vscode
+        yq-go
         zsh
         ];
     };

@@ -8,6 +8,7 @@
     import-tree.url = "github:vic/import-tree";
     
     wrapper-modules.url = "github:BirdeeHub/nix-wrapper-modules";
+    noctalia-shell.url = "github:noctalia-dev/noctalia-shell/v4.7.2";
   };
 
   # import modules/ automatically

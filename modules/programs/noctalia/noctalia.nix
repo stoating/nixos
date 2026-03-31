@@ -1,8 +1,10 @@
 { self, inputs, ... }: {
-  perSystem = { pkgs, ... }: {
+  perSystem = { pkgs, system, ... }: {
     packages.noctalia = inputs.wrapper-modules.wrappers.noctalia-shell.wrap {
       inherit pkgs;
-      settings = 
+      package = inputs.noctalia-shell.packages.${system}.default;
+      outOfStoreConfig = "/home/zack/.config/noctalia";
+      settings =
         (builtins.fromJSON
           (builtins.readFile ./noctalia.json)).settings;
     };
