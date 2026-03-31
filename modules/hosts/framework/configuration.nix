@@ -103,6 +103,7 @@
         NIXOS_OZONE_WL = "1"; # for vscode
       };
       systemPackages = with pkgs; [
+        bat
         cifs-utils # for nas mount
         discord
         firefox
@@ -121,7 +122,17 @@
     };
 
     programs.firefox.enable = true;
-    programs.zsh.enable = true;
+    programs.zsh = {
+      enable = true;
+      shellAliases = {
+        cat = "bat --paging=never";
+      };
+      interactiveShellInit = ''
+        export BAT_THEME="Nord"
+        export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+        export MANROFFOPT="-c"
+      '';
+    };
 
     # Create mount point directories (for NAS)
     systemd.tmpfiles.rules = [
