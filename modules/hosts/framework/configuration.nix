@@ -105,13 +105,16 @@
       systemPackages = with pkgs; [
         bat
         cifs-utils # for nas mount
+        direnv
         discord
         firefox
         ghostty
         git
+        gh
         google-cursor
         jq
         keepassxc
+        ripgrep
         synology-drive-client
         vim
         vscode
@@ -124,6 +127,8 @@
     programs.firefox.enable = true;
     programs.zsh = {
       enable = true;
+      autosuggestions.enable = true;
+      syntaxHighlighting.enable = true;
       shellAliases = {
         cat = "bat --paging=never";
       };
