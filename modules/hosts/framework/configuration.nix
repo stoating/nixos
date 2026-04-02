@@ -111,13 +111,18 @@
         ghostty
         git
         gh
+        google-chrome
         google-cursor
         jq
         keepassxc
+        libreoffice
+        obs-studio
+        onlyoffice-desktopeditors
         ripgrep
         synology-drive-client
         vim
         vscode
+        wpsoffice
         youtube-music
         yq-go
         zsh
