@@ -103,28 +103,46 @@
         NIXOS_OZONE_WL = "1"; # for vscode
       };
       systemPackages = with pkgs; [
+        asciinema_3
+        atuin
+        atuin-desktop
+        bandwhich
         bat
+        btop
         cifs-utils # for nas mount
         direnv
         discord
+        docker
+        fd
         firefox
+        fzf
         ghostty
         git
         gh
+        gping
         google-chrome
         google-cursor
         jq
         keepassxc
+        lazygit
         libreoffice
+        mc
+        navi
         obs-studio
         onlyoffice-desktopeditors
+        podman
+        podman-desktop
         ripgrep
         synology-drive-client
+        tldr
+        tmux
         vim
         vscode
         wpsoffice
+        yazi
         youtube-music
         yq-go
+        zoxide
         zsh
         ];
     };
