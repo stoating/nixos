@@ -121,7 +121,6 @@
         git
         gh
         gping
-        google-chrome
         google-cursor
         jq
         keepassxc
