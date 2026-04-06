@@ -1,5 +1,5 @@
 { ... }: {
-  flake.homeModules.vscode = { pkgs, ... }: {
+  flake.program.vscode = { pkgs, ... }: {
     programs.vscode = {
       enable = true;
       mutableExtensionsDir = false;

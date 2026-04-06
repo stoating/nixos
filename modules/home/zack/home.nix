@@ -10,9 +10,14 @@
       useUserPackages = true;
       users.zack = {
         imports = [
-          self.homeModules.vscode
-          self.homeModules.chrome
+          self.program.vscode
+          self.module.browser
         ];
+
+        browser.programs = {
+          chrome.enable = true;
+          firefox.enable = true;
+        };
 
         home.stateVersion = "25.11";
       };

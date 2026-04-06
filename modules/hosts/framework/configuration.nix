@@ -115,7 +115,6 @@
         discord
         docker
         fd
-        firefox
         fzf
         ghostty
         git

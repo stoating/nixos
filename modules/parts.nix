@@ -1,5 +1,10 @@
 { inputs, lib, ... }: {
-  options.flake.homeModules = lib.mkOption {
+  options.flake.program = lib.mkOption {
+    type = lib.types.lazyAttrsOf lib.types.unspecified;
+    default = {};
+  };
+
+  options.flake.module = lib.mkOption {
     type = lib.types.lazyAttrsOf lib.types.unspecified;
     default = {};
   };
