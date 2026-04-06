@@ -6,9 +6,6 @@
         "--enable-features=WaylandWindowDecorations"
         "--ozone-platform-hint=auto"
       ];
-      nativeMessagingHosts = [
-        pkgs.keepassxc
-      ];
       extensions = [
         { id = "cjpalhdlnbpafiamejdnhcphjbkeiagm"; } # uBlock Origin
         { id = "oboonakemofpalcgghocfoadofidjkkk"; } # KeePassXC-Browser

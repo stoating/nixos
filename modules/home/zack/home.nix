@@ -11,6 +11,7 @@
       users.zack = {
         imports = [
           self.program.vscode
+          self.program.keepassxc
           self.module.browser
         ];
 

@@ -122,7 +122,6 @@
         gping
         google-cursor
         jq
-        keepassxc
         lazygit
         libreoffice
         mc
