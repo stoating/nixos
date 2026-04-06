@@ -13,9 +13,12 @@
           self.program.vscode
           self.program.keepassxc
           self.module.browser
+          self.homes.zack.vscode
+          self.homes.zack.chromium
         ];
 
         browser.programs = {
+          chrome.enable = true;
           chromium.enable = true;
           firefox.enable = true;
         };
