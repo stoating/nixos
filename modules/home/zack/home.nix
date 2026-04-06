@@ -15,7 +15,7 @@
         ];
 
         browser.programs = {
-          chrome.enable = true;
+          chromium.enable = true;
           firefox.enable = true;
         };
 
