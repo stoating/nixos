@@ -138,6 +138,7 @@
         tmux
         vim
         vscode
+        wally-cli
         wpsoffice
         yazi
         youtube-music
