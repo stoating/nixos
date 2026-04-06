@@ -4,6 +4,7 @@
     imports = [
       self.nixosModules.framework-hardware
       self.nixosModules.niri
+      self.nixosModules.home-zack
     ];
 
     # Bootloader.
@@ -130,6 +131,7 @@
         navi
         obs-studio
         onlyoffice-desktopeditors
+        pear-desktop
         podman
         podman-desktop
         ripgrep
@@ -137,11 +139,9 @@
         tldr
         tmux
         vim
-        vscode
         wally-cli
         wpsoffice
         yazi
-        youtube-music
         yq-go
         zoxide
         zsh

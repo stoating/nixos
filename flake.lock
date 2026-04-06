@@ -18,6 +18,26 @@
         "type": "github"
       }
     },
+    "home-manager": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1775457580,
+        "narHash": "sha256-ikws/ssAmG20AGrEwBuwspwPlkubJu34mB+Uz2fJBJs=",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "rev": "5de7dbd151b0bd65d45785553d4a22d832733ffc",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "type": "github"
+      }
+    },
     "import-tree": {
       "locked": {
         "lastModified": 1773693634,
@@ -142,6 +162,7 @@
     "root": {
       "inputs": {
         "flake-parts": "flake-parts",
+        "home-manager": "home-manager",
         "import-tree": "import-tree",
         "nixpkgs": "nixpkgs",
         "noctalia-shell": "noctalia-shell",

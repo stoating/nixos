@@ -42,7 +42,7 @@
           "Mod+Return".spawn-sh = lib.getExe pkgs.ghostty;
           "Mod+G".spawn-sh      = lib.getExe pkgs.google-chrome;
           "Mod+S".spawn-sh      = "${lib.getExe self'.packages.noctalia} ipc call launcher toggle";
-          "Mod+Y".spawn-sh      = lib.getExe pkgs.youtube-music;
+          "Mod+Y".spawn-sh      = lib.getExe pkgs.pear-desktop;
           "Mod+C".spawn-sh      = lib.getExe pkgs.vscode;
 
           # --- Windows ---
