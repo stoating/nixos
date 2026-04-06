@@ -17,28 +17,7 @@
         xwayland-satellite.path = lib.getExe pkgs.xwayland-satellite;
 
         input.keyboard.xkb.layout = "de";
-
-        layout = {
-          gaps = 5;
-          focus-ring = {
-            active-color   = "#8fbcbb";
-            inactive-color = "#2e3440";
-            urgent-color   = "#bf616a";
-          };
-          border = {
-            active-color   = "#8fbcbb";
-            inactive-color = "#2e3440";
-            urgent-color   = "#bf616a";
-          };
-          shadow.color = "#00000070";
-          tab-indicator = {
-            active-color   = "#8fbcbb";
-            inactive-color = "#326766";
-            urgent-color   = "#bf616a";
-          };
-          insert-hint.color = "#8fbcbb80";
-        };
-
+  
         extraConfig = ''
           cursor {
             xcursor-theme "GoogleDot-Black"
