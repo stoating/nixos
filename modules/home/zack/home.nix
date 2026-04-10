@@ -10,9 +10,9 @@
       useUserPackages = true;
       users.zack = {
         imports = [
-          self.program.vscode
-          self.program.keepassxc
           self.module.browser
+          self.module.ide
+          self.module.passwords
           self.homes.zack.vscode
           self.homes.zack.chromium
         ];
@@ -21,6 +21,14 @@
           chrome.enable = true;
           chromium.enable = true;
           firefox.enable = true;
+        };
+
+        ide.programs = {
+          vscode.enable = true;
+        };
+
+        passwords.programs = {
+          keepassxc.enable = true;
         };
 
         home.stateVersion = "25.11";
