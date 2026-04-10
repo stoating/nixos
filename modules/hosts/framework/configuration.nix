@@ -3,7 +3,6 @@
   flake.nixosModules.framework-configuration = { pkgs, lib, ... }: {
     imports = [
       self.nixosModules.framework-hardware
-      self.nixosModules.niri
       self.nixosModules.home-zack
     ];
 
@@ -100,9 +99,6 @@
     nixpkgs.config.allowUnfree = true;
 
     environment = {
-      sessionVariables = {
-        NIXOS_OZONE_WL = "1"; # for vscode
-      };
       systemPackages = with pkgs; [
         asciinema_3
         atuin
@@ -145,7 +141,6 @@
         ];
     };
 
-    programs.firefox.enable = true;
     programs.zsh = {
       enable = true;
       autosuggestions.enable = true;

@@ -3,7 +3,11 @@
   flake.nixosModules.home-zack = { pkgs, lib, ... }: {
     imports = [
       inputs.home-manager.nixosModules.home-manager
+      self.module.compositor
     ];
+
+    # User chooses compositor
+    compositor.type = "niri";
 
     home-manager = {
       useGlobalPkgs = true;
@@ -35,5 +39,4 @@
       };
     };
   };
-
 }
