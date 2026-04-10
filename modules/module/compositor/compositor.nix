@@ -1,7 +1,7 @@
 { self, lib, ... }: {
   flake.module.compositor = { config, lib, ... }: {
     imports = [
-      self.nixosModules.niri
+      self.program.niri
     ];
 
     options.compositor.type = lib.mkOption {
