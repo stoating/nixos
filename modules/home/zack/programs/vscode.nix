@@ -2,9 +2,8 @@
   flake.homes.zack.vscode = { pkgs, ... }: {
     programs.vscode.profiles.default = {
       extensions = with pkgs.vscode-extensions; [
-        github.copilot
-        github.copilot-chat
         bbenoist.nix
+        github.copilot-chat
       ];
       userSettings = {
         "explorer.confirmDelete" = true;

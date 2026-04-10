@@ -14,8 +14,13 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # To pin VSCode: replace with url = "github:nixos/nixpkgs/<commit>";
+    vscode.follows = "nixpkgs";
   };
 
   # import modules/ automatically
-  outputs = inputs: inputs.flake-parts.lib.mkFlake {inherit inputs;} (inputs.import-tree ./modules);
+  outputs = inputs:
+    inputs.flake-parts.lib.mkFlake { inherit inputs; }
+      (inputs.import-tree ./modules);
 }
