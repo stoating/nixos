@@ -106,7 +106,6 @@
         btop
         cifs-utils # for nas mount
         discord
-        docker
         fd
         fzf
         ghostty
@@ -116,8 +115,6 @@
         navi
         obs-studio
         pear-desktop
-        podman
-        podman-desktop
         ripgrep
         synology-drive-client
         tldr

@@ -22,6 +22,7 @@
       users.zack = {
         imports = [
           self.homeModules.browser
+          self.homeModules.containers
           self.homeModules.development
           self.homeModules.ide
           self.homeModules.passwords
@@ -37,6 +38,12 @@
           chrome.enable = true;
           chromium.enable = true;
           firefox.enable = true;
+        };
+
+        containers.programs = {
+          docker.enable         = true;
+          podman.enable         = true;
+          podman-desktop.enable = true;
         };
 
         development.programs = {
