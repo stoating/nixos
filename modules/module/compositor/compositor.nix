@@ -1,6 +1,7 @@
 { self, ... }: {
   flake.nixosModules.compositor = { config, lib, ... }: {
     imports = [
+      self.nixosModules.peripherals
       self.nixosModules.niri
     ];
 

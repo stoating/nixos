@@ -6,6 +6,7 @@
       self.nixosModules.compositor
       self.nixosModules.shell
       self.nixosModules.zacks-niri
+      self.nixosModules.zacks-monitors
     ];
 
     # User chooses compositor

@@ -27,15 +27,12 @@ in {
             xcursor-size  = cursor-size;
           };
 
-          extraConfig = ''
-            output "DP-1" {
-              position x=0 y=0
-            }
-            output "eDP-2" {
-              scale 1.5
-              position x=1920 y=0
-            }
-          '';
+          extraConfig = lib.concatMapStrings (mon:
+            "output \"${mon.name}\" {\n"
+            + lib.optionalString (mon.scale != 1.0) "  scale ${toString mon.scale}\n"
+            + "  position x=${toString mon.position.x} y=${toString mon.position.y}\n"
+            + "}\n"
+          ) config.monitors;
 
           binds = config.niri.binds;
         };
