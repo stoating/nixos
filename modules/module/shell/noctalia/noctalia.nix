@@ -1,12 +1,8 @@
-{ self, inputs, ... }: {
-  perSystem = { pkgs, system, ... }: {
-    packages.noctalia = inputs.wrapper-modules.wrappers.noctalia-shell.wrap {
-      inherit pkgs;
-      package = inputs.noctalia.packages.${system}.default;
-      outOfStoreConfig = "/home/zack/.config/noctalia";
-      settings =
-        (builtins.fromJSON
-          (builtins.readFile ./noctalia.json)).settings;
+{ inputs, ... }: {
+  flake.program.noctalia = { ... }: {
+    home-manager.users.zack = {
+      imports = [ inputs.noctalia.homeModules.default ];
+      programs.noctalia-shell.enable = true;
     };
   };
 }

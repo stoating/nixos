@@ -6,12 +6,12 @@
     };
   };
 
-  perSystem = { pkgs, lib, self', ... }: {
+  perSystem = { pkgs, lib, ... }: {
     packages.niri = inputs.wrapper-modules.wrappers.niri.wrap {
       inherit pkgs;
       settings = {
         spawn-at-startup = [
-          (lib.getExe self'.packages.noctalia)
+          "noctalia-shell"
         ];
 
         xwayland-satellite.path = lib.getExe pkgs.xwayland-satellite;
@@ -41,7 +41,7 @@
           # --- Launchers ---
           "Mod+Return".spawn-sh = lib.getExe pkgs.ghostty;
           "Mod+G".spawn-sh      = lib.getExe pkgs.google-chrome;
-          "Mod+S".spawn-sh      = "${lib.getExe self'.packages.noctalia} ipc call launcher toggle";
+          "Mod+S".spawn-sh      = "noctalia-shell ipc call launcher toggle";
           "Mod+Y".spawn-sh      = lib.getExe pkgs.pear-desktop;
           "Mod+C".spawn-sh      = lib.getExe pkgs.vscode;
 

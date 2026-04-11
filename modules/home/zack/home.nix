@@ -4,6 +4,7 @@
     imports = [
       inputs.home-manager.nixosModules.home-manager
       self.module.compositor
+      self.module.shell
     ];
 
     # User chooses compositor
