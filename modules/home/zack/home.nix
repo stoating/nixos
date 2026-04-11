@@ -5,6 +5,7 @@
       inputs.home-manager.nixosModules.home-manager
       self.nixosModules.compositor
       self.nixosModules.shell
+      self.nixosModules.zacks-niri
     ];
 
     # User chooses compositor
