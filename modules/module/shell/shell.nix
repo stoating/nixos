@@ -1,6 +1,6 @@
 { self, lib, config, ... }: {
   config = {
-    flake.nixosModules.shell = { config, lib, ... }: {
+    flake.nixosModules.shell = { lib, ... }: {
       imports = [ self.nixosModules.noctalia ];
 
       options.shell.type = lib.mkOption {

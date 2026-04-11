@@ -1,4 +1,4 @@
-{ self, lib, ... }: {
+{ self, ... }: {
   flake.homeModules.passwords = { config, lib, ... }: {
     imports = [
       self.homeModules.keepassxc

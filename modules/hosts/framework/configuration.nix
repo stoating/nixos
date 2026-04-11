@@ -1,6 +1,6 @@
-{ self, inputs, ... }: {
+{ self, ... }: {
 
-  flake.nixosModules.framework-configuration = { pkgs, lib, ... }: {
+  flake.nixosModules.framework-configuration = { pkgs, ... }: {
     imports = [
       self.nixosModules.framework-hardware
       self.nixosModules.home-zack

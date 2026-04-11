@@ -1,6 +1,6 @@
 { self, inputs, ... }: {
 
-  flake.nixosModules.home-zack = { pkgs, lib, ... }: {
+  flake.nixosModules.home-zack = { ... }: {
     imports = [
       inputs.home-manager.nixosModules.home-manager
       self.nixosModules.compositor
@@ -21,6 +21,7 @@
           self.homeModules.browser
           self.homeModules.ide
           self.homeModules.passwords
+          self.homeModules.theming
           self.homeModules.zacks-vscode
           self.homeModules.zacks-chromium
           self.homeModules.zacks-noctalia
@@ -40,14 +41,7 @@
           keepassxc.enable = true;
         };
 
-        gtk = {
-          enable = true;
-          gtk3.extraConfig.gtk-application-prefer-dark-theme = 1;
-          gtk4 = {
-            extraConfig.gtk-application-prefer-dark-theme = 1;
-            theme = null;
-          };
-        };
+        theming.gtk.enable = true;
 
         home.stateVersion = "25.11";
       };

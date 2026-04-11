@@ -1,4 +1,4 @@
-{ self, lib, ... }: {
+{ self, ... }: {
   flake.nixosModules.compositor = { config, lib, ... }: {
     imports = [
       self.nixosModules.niri

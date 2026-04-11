@@ -1,4 +1,4 @@
-{ self, lib, ... }: {
+{ self, ... }: {
   flake.homeModules.ide = { config, lib, ... }: {
     imports = [
       self.homeModules.vscode

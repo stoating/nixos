@@ -1,4 +1,4 @@
-{ self, lib, ... }: {
+{ self, ... }: {
   flake.homeModules.browser = { config, lib, ... }: {
     imports = [
       self.homeModules.chrome

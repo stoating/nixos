@@ -1,5 +1,5 @@
 { ... }: {
-  flake.homeModules.chrome = { pkgs, ... }: {
+  flake.homeModules.chrome = { ... }: {
     programs.google-chrome.enable = true;
   };
 }
