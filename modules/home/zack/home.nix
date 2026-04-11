@@ -3,8 +3,8 @@
   flake.nixosModules.home-zack = { pkgs, lib, ... }: {
     imports = [
       inputs.home-manager.nixosModules.home-manager
-      self.module.compositor
-      self.module.shell
+      self.nixosModules.compositor
+      self.nixosModules.shell
     ];
 
     # User chooses compositor
@@ -15,11 +15,11 @@
       useUserPackages = true;
       users.zack = {
         imports = [
-          self.module.browser
-          self.module.ide
-          self.module.passwords
-          self.homes.zack.vscode
-          self.homes.zack.chromium
+          self.homeModules.browser
+          self.homeModules.ide
+          self.homeModules.passwords
+          self.homeModules.zacks-vscode
+          self.homeModules.zacks-chromium
         ];
 
         browser.programs = {

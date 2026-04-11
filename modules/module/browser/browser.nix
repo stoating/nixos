@@ -1,9 +1,9 @@
 { self, lib, ... }: {
-  flake.module.browser = { config, lib, ... }: {
+  flake.homeModules.browser = { config, lib, ... }: {
     imports = [
-      self.program.chrome
-      self.program.chromium
-      self.program.firefox
+      self.homeModules.chrome
+      self.homeModules.chromium
+      self.homeModules.firefox
     ];
 
     options.browser.programs = {

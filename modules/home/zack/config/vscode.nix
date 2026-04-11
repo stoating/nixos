@@ -1,5 +1,5 @@
 { ... }: {
-  flake.homes.zack.vscode = { pkgs, ... }: {
+  flake.homeModules.zacks-vscode = { pkgs, ... }: {
     programs.vscode.profiles.default = {
       extensions = with pkgs.vscode-extensions; [
         bbenoist.nix

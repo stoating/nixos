@@ -1,7 +1,7 @@
 { self, lib, ... }: {
-  flake.module.ide = { config, lib, ... }: {
+  flake.homeModules.ide = { config, lib, ... }: {
     imports = [
-      self.program.vscode
+      self.homeModules.vscode
     ];
 
     options.ide.programs = {

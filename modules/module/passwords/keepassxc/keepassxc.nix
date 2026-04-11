@@ -1,5 +1,5 @@
 { ... }: {
-  flake.program.keepassxc = { ... }: {
+  flake.homeModules.keepassxc = { ... }: {
     programs.keepassxc = {
       settings = {
         Browser.Enabled = true;

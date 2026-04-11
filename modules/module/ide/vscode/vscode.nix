@@ -1,5 +1,5 @@
 { inputs, ... }: {
-  flake.program.vscode = { pkgs, lib, osConfig ? {}, ... }: {
+  flake.homeModules.vscode = { pkgs, lib, osConfig ? {}, ... }: {
     programs.vscode = {
       mutableExtensionsDir = false;
       package = (import inputs.vscode {

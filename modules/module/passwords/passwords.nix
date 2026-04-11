@@ -1,7 +1,7 @@
 { self, lib, ... }: {
-  flake.module.passwords = { config, lib, ... }: {
+  flake.homeModules.passwords = { config, lib, ... }: {
     imports = [
-      self.program.keepassxc
+      self.homeModules.keepassxc
     ];
 
     options.passwords.programs = {

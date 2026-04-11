@@ -1,5 +1,5 @@
 { ... }: {
-  flake.program.chromium = { pkgs, ... }: {
+  flake.homeModules.chromium = { pkgs, ... }: {
     programs.chromium = {
       package = pkgs.chromium;
       commandLineArgs = [
