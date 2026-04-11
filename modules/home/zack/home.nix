@@ -23,6 +23,7 @@
           self.homeModules.passwords
           self.homeModules.zacks-vscode
           self.homeModules.zacks-chromium
+          self.homeModules.zacks-noctalia
         ];
 
         browser.programs = {
