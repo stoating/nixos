@@ -26,24 +26,30 @@ All modules follow this wrapper structure:
 - Only include `self` / `inputs` / etc. in the outer args if they are actually used.
 
 ### Naming
-- NixOS modules are exposed as `flake.nixosModules.<name>` and referenced elsewhere as `self.nixosModules.<name>`.
-- There is no `flake.homeModules` — home-manager modules are wrapped as `flake.nixosModules.<name>` and configure `home-manager.users.zack` directly.
+- System-level modules are exposed as `flake.nixosModules.<name>` and referenced as `self.nixosModules.<name>`.
+- Home-manager modules are exposed as `flake.homeModules.<name>` and referenced as `self.homeModules.<name>`.
 - Module names use kebab-case (e.g. `home-zack`, `framework-configuration`, `framework-hardware`).
+- User-specific home modules are prefixed with the username: `zacks-<tool>`.
 
 ### Directory layout
 ```
 modules/
-  parts.nix                        # flake-parts systems + pkgs config
-  home/zack/home.nix               # home-manager setup for user zack
+  parts.nix                             # flake-parts systems + pkgs config
+  home/
+    common/config/<tool>.nix            # shared lib values (flake.lib.<tool>.commonSettings)
+    zack/
+      home.nix                          # top-level user module: wires nixosModules + homeModules
+      config/<tool>.nix                 # user-specific home overrides (flake.homeModules.zacks-<tool>)
   hosts/framework/
-    configuration.nix              # main NixOS config, imports all other nixosModules
-    framework.nix                  # framework-specific hardware tweaks
-    hardware.nix                   # nixos-generate-config output
-  programs/<name>/<name>.nix       # per-program nixosModules
+    default.nix                         # flake.nixosConfigurations.framework
+    configuration.nix                   # main NixOS config (imports framework-hardware + home-zack)
+    hardware.nix                        # nixos-generate-config output
+  module/<category>/
+    <category>.nix                      # root module: options interface + imports all tools
+    <tool>/<tool>.nix                   # tool sub-module: package + default config
 ```
 
-New programs go in `modules/programs/<name>/<name>.nix` and are imported in
-`modules/hosts/framework/configuration.nix` via `self.nixosModules.<name>`.
+New programs follow the dendritic pattern — see `.github/instructions/adding-modules.instructions.md`.
 
 ### home-manager
 - Integrated via `inputs.home-manager.nixosModules.home-manager` (not standalone).
@@ -52,7 +58,7 @@ New programs go in `modules/programs/<name>/<name>.nix` and are imported in
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
   ```
-- Per-program home-manager config lives in the program's own nixosModule and targets `home-manager.users.zack = { ... }`.
+- Per-program home-manager config lives in `flake.homeModules` and is imported inside `home-manager.users.zack`.
 - `home.stateVersion` is set in `home.nix` and should not be changed unless intentionally migrating.
 
 ### Rebuilding
@@ -80,5 +86,5 @@ Run from `/home/zack/nixos`. Remember to `git add` any new files first.
 | `flake-parts` | flake output structure |
 | `import-tree` | auto-discovers `modules/**/*.nix` |
 | `home-manager` | user environment management |
-| `wrapper-modules` | wraps niri / noctalia with config |
-| `noctalia-shell` | noctalia shell package |
+| `noctalia` | noctalia shell package |
+| `vscode` | follows nixpkgs (pinnable separately) |
