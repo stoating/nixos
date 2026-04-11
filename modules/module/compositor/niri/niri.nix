@@ -4,7 +4,11 @@ let
   cursor-name   = config.flake.theming.cursor.name;
   cursor-size   = config.flake.theming.cursor.size;
 in {
-  flake.nixosModules.niri = { pkgs, lib, config, ... }: {
+  flake.nixosModules.niri = { pkgs, lib, config, ... }:
+  let
+    keyboard-layout  = config.keyboard.xkb.layout;
+    keyboard-variant = config.keyboard.xkb.variant;
+  in {
     options.niri.binds = lib.mkOption {
       type    = lib.types.attrs;
       default = {};
@@ -20,7 +24,10 @@ in {
 
           xwayland-satellite.path = lib.getExe pkgs.xwayland-satellite;
 
-          input.keyboard.xkb.layout = "de";
+          input.keyboard.xkb = {
+            layout  = keyboard-layout;
+            variant = keyboard-variant;
+          };
 
           cursor = {
             xcursor-theme = cursor-name;

@@ -1,6 +1,6 @@
 { self, ... }: {
 
-  flake.nixosModules.framework-configuration = { pkgs, ... }: {
+  flake.nixosModules.framework-configuration = { pkgs, config, ... }: {
     imports = [
       self.nixosModules.framework-hardware
       self.nixosModules.home-zack
@@ -61,12 +61,12 @@
 
     # Configure keymap in X11
     services.xserver.xkb = {
-      layout = "de";
-      variant = "";
+      layout  = config.keyboard.xkb.layout;
+      variant = config.keyboard.xkb.variant;
     };
 
     # Configure console keymap
-    console.keyMap = "de";
+    console.keyMap = config.keyboard.xkb.layout;
 
     # Enable CUPS to print documents.
     services.printing = {
@@ -92,8 +92,6 @@
       description = "zack";
       extraGroups = [ "networkmanager" "wheel" ];
       shell = pkgs.zsh;
-      packages = with pkgs; [
-      ];
     };
 
     nixpkgs.config.allowUnfree = true;

@@ -2,6 +2,7 @@
   flake.nixosModules.peripherals = { ... }: {
     imports = [
       self.nixosModules.monitors
+      self.nixosModules.keyboard
     ];
   };
 }
