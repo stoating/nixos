@@ -105,17 +105,13 @@
         bat
         btop
         cifs-utils # for nas mount
-        direnv
         discord
         docker
         fd
         fzf
         ghostty
-        git
-        gh
         gping
         jq
-        lazygit
         mc
         navi
         obs-studio

@@ -22,6 +22,7 @@
       users.zack = {
         imports = [
           self.homeModules.browser
+          self.homeModules.development
           self.homeModules.ide
           self.homeModules.passwords
           self.homeModules.productivity
@@ -36,6 +37,13 @@
           chrome.enable = true;
           chromium.enable = true;
           firefox.enable = true;
+        };
+
+        development.programs = {
+          git.enable     = true;
+          gh.enable      = true;
+          lazygit.enable = true;
+          direnv.enable  = true;
         };
 
         ide.programs = {
