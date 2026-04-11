@@ -10,6 +10,9 @@
     # User chooses compositor
     compositor.type = "niri";
 
+    # User chooses shell
+    shell.type = "noctalia";
+
     home-manager = {
       useGlobalPkgs = true;
       useUserPackages = true;

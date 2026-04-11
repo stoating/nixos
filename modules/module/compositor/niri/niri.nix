@@ -1,4 +1,4 @@
-{ self, inputs, ... }: {
+{ self, inputs, config, ... }: {
   flake.nixosModules.niri = { pkgs, lib, ... }: {
     programs.niri = {
       enable = true;
@@ -10,9 +10,7 @@
     packages.niri = inputs.wrapper-modules.wrappers.niri.wrap {
       inherit pkgs;
       settings = {
-        spawn-at-startup = [
-          "noctalia-shell"
-        ];
+        spawn-at-startup = [ config.flake.shell.program ];
 
         xwayland-satellite.path = lib.getExe pkgs.xwayland-satellite;
 
@@ -41,7 +39,7 @@
           # --- Launchers ---
           "Mod+Return".spawn-sh = lib.getExe pkgs.ghostty;
           "Mod+G".spawn-sh      = lib.getExe pkgs.google-chrome;
-          "Mod+S".spawn-sh      = "noctalia-shell ipc call launcher toggle";
+          "Mod+S".spawn-sh      = config.flake.shell.launcher-command;
           "Mod+Y".spawn-sh      = lib.getExe pkgs.pear-desktop;
           "Mod+C".spawn-sh      = lib.getExe pkgs.vscode;
 
