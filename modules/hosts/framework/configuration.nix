@@ -116,11 +116,9 @@
         gping
         jq
         lazygit
-        libreoffice
         mc
         navi
         obs-studio
-        onlyoffice-desktopeditors
         pear-desktop
         podman
         podman-desktop
@@ -130,7 +128,6 @@
         tmux
         vim
         wally-cli
-        wpsoffice
         yazi
         yq-go
         zoxide

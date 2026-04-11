@@ -24,6 +24,7 @@
           self.homeModules.browser
           self.homeModules.ide
           self.homeModules.passwords
+          self.homeModules.productivity
           self.homeModules.theming
           self.homeModules.zacks-vscode
           self.homeModules.zacks-chromium
@@ -43,6 +44,12 @@
 
         passwords.programs = {
           keepassxc.enable = true;
+        };
+
+        productivity.programs = {
+          libreoffice.enable = true;
+          onlyoffice.enable  = true;
+          wpsoffice.enable   = true;
         };
 
         theming.gtk.enable = true;
