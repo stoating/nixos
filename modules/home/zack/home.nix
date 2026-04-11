@@ -25,6 +25,7 @@
           self.homeModules.zacks-vscode
           self.homeModules.zacks-chromium
           self.homeModules.zacks-noctalia
+          self.homeModules.zacks-cursor
         ];
 
         browser.programs = {

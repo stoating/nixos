@@ -15,13 +15,13 @@
         xwayland-satellite.path = lib.getExe pkgs.xwayland-satellite;
 
         input.keyboard.xkb.layout = "de";
+
+        cursor = {
+          xcursor-theme = config.flake.theming.cursor.name;
+          xcursor-size  = config.flake.theming.cursor.size;
+        };
   
         extraConfig = ''
-          cursor {
-            xcursor-theme "GoogleDot-Black"
-            xcursor-size 16
-          }
-
           output "DP-1" {
             position x=0 y=0
           }

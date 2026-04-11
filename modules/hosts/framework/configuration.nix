@@ -116,7 +116,6 @@
         git
         gh
         gping
-        google-cursor
         jq
         lazygit
         libreoffice

@@ -56,6 +56,36 @@ Only include `self` / `inputs` / etc. in the outer args if they are actually use
 
 ---
 
+## Mixing `options` and `flake.*` in the Same File
+
+**When a file declares `options` at the top level, all `flake.*` assignments must move into an explicit `config = {}` block.** Nix's module system requires this: a file cannot have both bare assignments and `options` declarations at the top level simultaneously.
+
+Wrong — will cause `unsupported attribute 'flake'` error:
+
+```nix
+{ self, lib, ... }: {
+  flake.homeModules.foo = { ... }: { };   # ← bare assignment
+
+  options.flake.foo.bar = lib.mkOption { type = lib.types.str; };
+}
+```
+
+Correct:
+
+```nix
+{ self, lib, ... }: {
+  config.flake.homeModules.foo = { ... }: { };  # ← moved into config
+
+  options.flake.foo.bar = lib.mkOption { type = lib.types.str; };
+}
+```
+
+See `modules/module/shell/shell.nix` and `modules/module/theming/theming.nix` for real examples.
+
+Files that only assign values and never declare `options` do **not** need the `config` wrapper — keep them as bare assignments.
+
+---
+
 ## Root Module Pattern
 
 The root module for a category:
