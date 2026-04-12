@@ -1,6 +1,7 @@
 { self, ... }: {
   flake.homeModules.zacks-noctalia = { lib, ... }: {
     programs.noctalia-shell.settings = lib.recursiveUpdate self.lib.noctalia.commonSettings {
+      settingsVersion = 59;
       general.avatarImage = "/home/zack/images/profile/stoat.png";
       location.name      = "Stuttgart, DE";
       wallpaper.directory = "/home/zack/images/desktop";
