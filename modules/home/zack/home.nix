@@ -25,8 +25,9 @@
           self.homeModules.containers
           self.homeModules.data
           self.homeModules.development
+          self.homeModules.editor
           self.homeModules.files
-          self.homeModules.ide
+          self.homeModules.media
           self.homeModules.monitoring
           self.homeModules.passwords
           self.homeModules.productivity
@@ -58,8 +59,9 @@
           direnv.enable  = true;
         };
 
-        ide.programs = {
+        editor.programs = {
           vscode.enable = true;
+          vim.enable    = true;
         };
 
         passwords.programs = {
@@ -100,13 +102,20 @@
         };
 
         terminal.programs = {
-          tmux.enable      = true;
-          vim.enable       = true;
-          asciinema.enable = true;
+          tmux.enable    = true;
+          ghostty.enable = true;
         };
 
-        theming.gtk.enable = true;
-        theming.bat.enable = true;
+        media.programs = {
+          asciinema.enable    = true;
+          obs-studio.enable   = true;
+          pear-desktop.enable = true;
+        };
+
+        theming = {
+          bat.enable = true;
+          gtk.enable = true;
+        };
 
         home.stateVersion = "25.11";
       };

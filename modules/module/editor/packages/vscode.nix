@@ -1,6 +1,7 @@
 { inputs, ... }: {
-  flake.homeModules.vscode = { pkgs, lib, osConfig ? {}, ... }: {
-    programs.vscode = {
+  flake.homeModules.vscode = { pkgs, lib, config, osConfig ? {}, ... }: {
+    programs.vscode = lib.mkIf config.editor.programs.vscode.enable {
+
       mutableExtensionsDir = false;
       package = (import inputs.vscode {
         inherit (pkgs.stdenv.hostPlatform) system;

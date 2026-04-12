@@ -100,9 +100,6 @@
       systemPackages = with pkgs; [
         cifs-utils # for nas mount
         discord
-        ghostty
-        obs-studio
-        pear-desktop
         synology-drive-client
         zsh
         ];

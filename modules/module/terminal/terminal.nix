@@ -2,14 +2,12 @@
   flake.homeModules.terminal = { lib, ... }: {
     imports = [
       self.homeModules.tmux
-      self.homeModules.vim
-      self.homeModules.asciinema
+      self.homeModules.ghostty
     ];
 
     options.terminal.programs = {
-      tmux.enable      = lib.mkEnableOption "tmux";
-      vim.enable       = lib.mkEnableOption "vim";
-      asciinema.enable = lib.mkEnableOption "asciinema";
+      tmux.enable    = lib.mkEnableOption "tmux";
+      ghostty.enable = lib.mkEnableOption "Ghostty";
     };
   };
 }
