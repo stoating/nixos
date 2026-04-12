@@ -68,15 +68,6 @@
     # Configure console keymap
     console.keyMap = config.keyboard.xkb.layout;
 
-    # Enable CUPS to print documents.
-    services.printing = {
-      enable = true;
-      browsing = true;
-      drivers = with pkgs; [
-        cups-filters   # IPP Everywhere / driverless support
-      ];
-    };
-
     # Enable sound with pipewire.
     services.pulseaudio.enable = false;
     security.rtkit.enable = true;

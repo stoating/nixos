@@ -10,6 +10,7 @@
       self.nixosModules.zacks-zsh
       self.nixosModules.zacks-monitors
       self.nixosModules.zacks-keyboard
+      self.nixosModules.zacks-printer
     ];
 
     # User chooses compositor
