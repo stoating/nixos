@@ -98,32 +98,12 @@
 
     environment = {
       systemPackages = with pkgs; [
-        asciinema_3
-        atuin
-        atuin-desktop
-        bandwhich
-        bat
-        btop
         cifs-utils # for nas mount
         discord
-        fd
-        fzf
         ghostty
-        gping
-        jq
-        mc
-        navi
         obs-studio
         pear-desktop
-        ripgrep
         synology-drive-client
-        tldr
-        tmux
-        vim
-        wally-cli
-        yazi
-        yq-go
-        zoxide
         zsh
         ];
     };
@@ -132,11 +112,7 @@
       enable = true;
       autosuggestions.enable = true;
       syntaxHighlighting.enable = true;
-      shellAliases = {
-        cat = "bat --paging=never";
-      };
       interactiveShellInit = ''
-        export BAT_THEME="Nord"
         export MANPAGER="sh -c 'col -bx | bat -l man -p'"
         export MANROFFOPT="-c"
       '';

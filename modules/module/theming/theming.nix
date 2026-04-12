@@ -3,6 +3,7 @@
     imports = [
       self.homeModules.theming-gtk
       self.homeModules.theming-cursor
+      self.homeModules.theming-bat
     ];
   };
 
