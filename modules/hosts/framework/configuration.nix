@@ -86,12 +86,6 @@
 
     nixpkgs.config.allowUnfree = true;
 
-    environment = {
-      systemPackages = with pkgs; [
-        synology-drive-client
-        ];
-    };
-
     system.stateVersion = "25.11";
   };
 }

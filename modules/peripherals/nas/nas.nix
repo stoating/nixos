@@ -37,10 +37,16 @@
         type        = lib.types.str;
         description = "Bind-mount path in the user's home directory.";
       };
+      synologyDrive = lib.mkOption {
+        type        = lib.types.bool;
+        default     = false;
+        description = "Install Synology Drive client for tray and sync support.";
+      };
     };
 
     config = lib.mkIf config.nas.enable {
-      environment.systemPackages = [ pkgs.cifs-utils ];
+      environment.systemPackages = [ pkgs.cifs-utils ]
+        ++ lib.optional config.nas.synologyDrive pkgs.synology-drive-client;
 
       systemd.tmpfiles.rules = [
         "d ${config.nas.mountPoint} 0755 ${config.nas.user} users -"
