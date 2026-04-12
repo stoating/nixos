@@ -1,6 +1,6 @@
 { config, ... }:
 let
-  launcher-command = config.flake.shell.launcher-command;
+  launcher-command = config.flake.shell-desktop.launcher-command;
 in {
   flake.nixosModules.zacks-niri = { pkgs, lib, ... }: {
     niri.binds = {

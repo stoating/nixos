@@ -1,6 +1,6 @@
 { inputs, config, ... }:
 let
-  shell-program = config.flake.shell.program;
+  shell-desktop = config.flake.shell-desktop.program;
   cursor-name   = config.flake.theming.cursor.name;
   cursor-size   = config.flake.theming.cursor.size;
 in {
@@ -20,7 +20,7 @@ in {
       package = inputs.wrapper-modules.wrappers.niri.wrap {
         inherit pkgs;
         settings = {
-          spawn-at-startup = [ shell-program ];
+          spawn-at-startup = [ shell-desktop ];
 
           xwayland-satellite.path = lib.getExe pkgs.xwayland-satellite;
 

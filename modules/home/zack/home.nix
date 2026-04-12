@@ -4,8 +4,10 @@
     imports = [
       inputs.home-manager.nixosModules.home-manager
       self.nixosModules.compositor
-      self.nixosModules.shell
+      self.nixosModules.shell-desktop
+      self.nixosModules.shell-cli
       self.nixosModules.zacks-niri
+      self.nixosModules.zacks-zsh
       self.nixosModules.zacks-monitors
       self.nixosModules.zacks-keyboard
     ];
@@ -13,8 +15,11 @@
     # User chooses compositor
     compositor.type = "niri";
 
-    # User chooses shell
-    shell.type = "noctalia";
+    # User chooses desktop shell
+    shell-desktop.type = "noctalia";
+
+    # User chooses cli shell
+    shell-cli.type = "zsh";
 
     home-manager = {
       useGlobalPkgs = true;
@@ -41,9 +46,9 @@
         ];
 
         browser.programs = {
-          chrome.enable = true;
+          chrome.enable   = true;
           chromium.enable = true;
-          firefox.enable = true;
+          firefox.enable  = true;
         };
 
         containers.programs = {
@@ -108,6 +113,7 @@
 
         media.programs = {
           asciinema.enable    = true;
+          discord.enable      = true;
           obs-studio.enable   = true;
           pear-desktop.enable = true;
         };

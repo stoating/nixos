@@ -91,7 +91,6 @@
       isNormalUser = true;
       description = "zack";
       extraGroups = [ "networkmanager" "wheel" ];
-      shell = pkgs.zsh;
     };
 
     nixpkgs.config.allowUnfree = true;
@@ -99,20 +98,8 @@
     environment = {
       systemPackages = with pkgs; [
         cifs-utils # for nas mount
-        discord
         synology-drive-client
-        zsh
         ];
-    };
-
-    programs.zsh = {
-      enable = true;
-      autosuggestions.enable = true;
-      syntaxHighlighting.enable = true;
-      interactiveShellInit = ''
-        export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-        export MANROFFOPT="-c"
-      '';
     };
 
     # Create mount point directories (for NAS)

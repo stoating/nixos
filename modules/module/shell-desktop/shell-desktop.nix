@@ -1,22 +1,22 @@
 { self, lib, config, ... }: {
   config = {
-    flake.nixosModules.shell = { lib, ... }: {
+    flake.nixosModules.shell-desktop = { lib, ... }: {
       imports = [ self.nixosModules.noctalia ];
 
-      options.shell.type = lib.mkOption {
+      options.shell-desktop.type = lib.mkOption {
         type = lib.types.enum [ "noctalia" ];
         default = "noctalia";
         description = "Desktop shell to use.";
       };
     };
 
-    flake.shell.program =
-      lib.mkIf (config.flake.shell.type == "noctalia") "noctalia-shell";
-    flake.shell.launcher-command =
-      lib.mkIf (config.flake.shell.type == "noctalia") "noctalia-shell ipc call launcher toggle";
+    flake.shell-desktop.program =
+      lib.mkIf (config.flake.shell-desktop.type == "noctalia") "noctalia-shell";
+    flake.shell-desktop.launcher-command =
+      lib.mkIf (config.flake.shell-desktop.type == "noctalia") "noctalia-shell ipc call launcher toggle";
   };
 
-  options.flake.shell = {
+  options.flake.shell-desktop = {
     type = lib.mkOption {
       type = lib.types.str;
       default = "noctalia";
