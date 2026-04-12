@@ -105,9 +105,10 @@
           atuin.enable         = true;
           atuin-desktop.enable = true;
           fzf.enable           = true;
-          zoxide.enable        = true;
           navi.enable          = true;
+          starship.enable      = true;
           tldr.enable          = true;
+          zoxide.enable        = true;
         };
 
         terminal.programs = {

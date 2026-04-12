@@ -7,6 +7,7 @@
       self.homeModules.zoxide
       self.homeModules.navi
       self.homeModules.tldr
+      self.homeModules.starship
     ];
 
     options.shell-tools.programs = {
@@ -16,6 +17,7 @@
       zoxide.enable        = lib.mkEnableOption "zoxide";
       navi.enable          = lib.mkEnableOption "navi";
       tldr.enable          = lib.mkEnableOption "tldr";
+      starship.enable      = lib.mkEnableOption "starship";
     };
   };
 }
