@@ -88,55 +88,9 @@
 
     environment = {
       systemPackages = with pkgs; [
-        cifs-utils # for nas mount
         synology-drive-client
         ];
     };
-
-    # Create mount point directories (for NAS)
-    systemd.tmpfiles.rules = [
-      "d /mnt/nas 0755 zack users -"
-      "d /home/zack/nas 0755 zack users -"
-    ];
-
-    # Mount Synology NAS share via SMB
-    # Credentials file must be created manually at /etc/smb-credentials:
-    #   username=Zachary
-    #   password=YOUR_PASSWORD
-    # Then: sudo chmod 600 /etc/smb-credentials
-    fileSystems."/mnt/nas" = {
-      device = "//192.168.178.145/homes";
-      fsType = "cifs";
-      options = [
-        "credentials=/etc/smb-credentials"
-        "uid=1000"
-        "gid=100"
-        "x-systemd.automount"
-        "noauto"
-        "x-systemd.idle-timeout=60"
-        "x-systemd.device-timeout=5s"
-        "x-systemd.mount-timeout=5s"
-      ];
-    };
-
-    # Bind mount so the share is also accessible at ~/nas
-    # noauto + x-systemd.automount ensures it only mounts on access, after the CIFS mount is ready
-    fileSystems."/home/zack/nas" = {
-      device = "/mnt/nas";
-      fsType = "none";
-      options = [ "bind" "noauto" "x-systemd.automount" "x-systemd.requires-mounts-for=/mnt/nas" ];
-    };
-
-    # Required for Synology Drive tray / mDNS discovery
-    services.avahi = {
-      enable = true;
-      nssmdns4 = true;
-      openFirewall = true;
-    };
-
-    # GNOME Keyring for credential storage (used by Synology Drive)
-    services.gnome.gnome-keyring.enable = true;
-    security.pam.services.gdm.enableGnomeKeyring = true;
 
     system.stateVersion = "25.11";
   };

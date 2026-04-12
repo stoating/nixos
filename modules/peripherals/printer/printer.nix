@@ -1,6 +1,11 @@
 { ... }: {
   flake.nixosModules.printer = { pkgs, lib, config, ... }: {
     options.printers = {
+      browsing = lib.mkOption {
+        type        = lib.types.bool;
+        default     = false;
+        description = "Enable CUPS network printer browsing/discovery.";
+      };
       default = lib.mkOption {
         type        = lib.types.str;
         default     = "";
@@ -37,7 +42,7 @@
     config = lib.mkIf (config.printers.devices != []) {
       services.printing = {
         enable   = true;
-        browsing = true;
+        browsing = config.printers.browsing;
         drivers  = [ pkgs.cups-filters ];
       };
 

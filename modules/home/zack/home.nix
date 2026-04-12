@@ -11,6 +11,7 @@
       self.nixosModules.zacks-monitors
       self.nixosModules.zacks-keyboard
       self.nixosModules.zacks-printer
+      self.nixosModules.zacks-nas
     ];
 
     # User chooses compositor
