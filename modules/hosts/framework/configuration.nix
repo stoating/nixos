@@ -15,7 +15,8 @@
     };
 
     networking = {
-      hostName = "nixos";
+      firewall.enable = true;
+      hostName = "fw";
       networkmanager.enable = true;
     };
 
@@ -41,7 +42,10 @@
       };
     };
 
-    hardware.bluetooth.enable = true;
+    hardware.bluetooth = {
+      enable       = true;
+      powerOnBoot  = false;
+    };
 
     services = {
       xserver = {
@@ -64,7 +68,10 @@
 
     console.keyMap = config.keyboard.xkb.layout;
 
-    security.rtkit.enable = true;
+    security = {
+      rtkit.enable = true;
+      sudo.wheelNeedsPassword = true;
+    };
 
     users.users.zack = {
       isNormalUser = true;

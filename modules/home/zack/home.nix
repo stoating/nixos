@@ -69,6 +69,8 @@
         editor.programs = {
           vscode.enable = true;
           vim.enable    = true;
+          neovim.enable = true;
+          emacs.enable  = true;
         };
 
         passwords.programs = {
