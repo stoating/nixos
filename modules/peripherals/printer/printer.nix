@@ -57,6 +57,11 @@
 
         ensureDefaultPrinter = config.printers.default;
       };
+
+      systemd.services.ensure-printers = {
+        after = [ "network-online.target" ];
+        wants = [ "network-online.target" ];
+      };
     };
   };
 }
