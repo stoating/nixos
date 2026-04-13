@@ -20,6 +20,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    claude-desktop.url = "github:k3d3/claude-desktop-linux-flake";
+
     # To pin VSCode: replace with url = "github:nixos/nixpkgs/<commit>";
     vscode.follows = "nixpkgs";
   };

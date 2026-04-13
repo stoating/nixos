@@ -46,7 +46,8 @@
         ];
 
         ai.programs = {
-          claude-code.enable = true;
+          claude-code.enable    = true;
+          claude-desktop.enable = true;
         };
 
         browser.programs = {

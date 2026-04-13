@@ -24,8 +24,8 @@ in {
       # --- Columns ---
       "Mod+Left".focus-column-left   = _: {};
       "Mod+Right".focus-column-right = _: {};
-      "Mod+Shift+Left".move-column-left   = _: {};
-      "Mod+Shift+Right".move-column-right = _: {};
+      "Mod+Shift+Left".move-column-left-or-to-monitor-left   = _: {};
+      "Mod+Shift+Right".move-column-right-or-to-monitor-right = _: {};
       "Mod+R".switch-preset-column-width     = _: {};
       "Mod+W".maximize-column                = _: {};
       "Mod+BracketLeft".consume-or-expel-window-left   = _: {};
