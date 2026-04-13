@@ -1,7 +1,7 @@
 { ... }: {
-  flake.nixosModules.zsh = { config, lib, ... }: {
-    config = lib.mkIf (config.shell-cli.type == "zsh") {
-      programs.zsh.enable = true;
+  flake.homeModules.zsh = { config, lib, ... }: {
+    programs.zsh = lib.mkIf config.shell-cli.programs.zsh.enable {
+      enable = true;
     };
   };
 }

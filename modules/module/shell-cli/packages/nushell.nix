@@ -1,7 +1,7 @@
 { ... }: {
-  flake.nixosModules.nushell = { pkgs, config, lib, ... }: {
-    config = lib.mkIf (config.shell-cli.type == "nushell") {
-      environment.shells = [ pkgs.nushell ];
+  flake.homeModules.nushell = { config, lib, ... }: {
+    programs.nushell = lib.mkIf config.shell-cli.programs.nushell.enable {
+      enable = true;
     };
   };
 }

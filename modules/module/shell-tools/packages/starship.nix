@@ -1,30 +1,13 @@
 { ... }: {
-  flake.homeModules.starship = { ... }: {
-    programs.starship = {
+  flake.homeModules.starship = { lib, config, ... }: {
+    programs.starship = lib.mkIf config.shell-tools.programs.starship.enable {
       enable = true;
       enableZshIntegration = true;
 
       settings = {
         add_newline = false;
 
-        format = ''
-          $username\
-          $hostname\
-          $directory\
-          $git_branch\
-          $git_status\
-          $package\
-          $nodejs\
-          $python\
-          $rust\
-          $golang\
-          $docker_context\
-          $cmd_duration\
-          $line_break\
-          $jobs\
-          $time\
-          $character
-        '';
+        format = "$username$hostname$directory$git_branch$git_status$package$nodejs$python$rust$golang$docker_context$cmd_duration$line_break$jobs$time$character";
 
         character = {
           success_symbol = "[❯](bold green)";

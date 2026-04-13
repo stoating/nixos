@@ -1,9 +1,10 @@
 { ... }: {
-  flake.nixosModules.zacks-zsh = { ... }: {
+  flake.homeModules.zacks-zsh = { ... }: {
     programs.zsh = {
-      autosuggestions.enable = true;
+      autosuggestion.enable = true;
       syntaxHighlighting.enable = true;
-      interactiveShellInit = ''
+
+      initContent = ''
         export MANPAGER="sh -c 'col -bx | bat -l man -p'"
         export MANROFFOPT="-c"
       '';

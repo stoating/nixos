@@ -5,9 +5,7 @@
       inputs.home-manager.nixosModules.home-manager
       self.nixosModules.compositor
       self.nixosModules.shell-desktop
-      self.nixosModules.shell-cli
       self.nixosModules.zacks-niri
-      self.nixosModules.zacks-zsh
       self.nixosModules.zacks-monitors
       self.nixosModules.zacks-keyboard
       self.nixosModules.zacks-printer
@@ -19,9 +17,6 @@
 
     # User chooses desktop shell
     shell-desktop.type = "noctalia";
-
-    # User chooses cli shell
-    shell-cli.type = "zsh";
 
     home-manager = {
       useGlobalPkgs = true;
@@ -38,13 +33,15 @@
           self.homeModules.monitoring
           self.homeModules.passwords
           self.homeModules.productivity
+          self.homeModules.shell-cli
           self.homeModules.shell-tools
           self.homeModules.terminal
           self.homeModules.theming
-          self.homeModules.zacks-vscode
           self.homeModules.zacks-chromium
-          self.homeModules.zacks-noctalia
           self.homeModules.zacks-cursor
+          self.homeModules.zacks-noctalia
+          self.homeModules.zacks-vscode
+          self.homeModules.zacks-zsh
         ];
 
         browser.programs = {
@@ -99,6 +96,12 @@
           btop.enable      = true;
           bandwhich.enable = true;
           gping.enable     = true;
+        };
+
+        shell-cli.programs = {
+          zsh.enable     = true;
+          fish.enable    = true;
+          nushell.enable = true;
         };
 
         shell-tools.programs = {

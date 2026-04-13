@@ -1,7 +1,7 @@
 { ... }: {
-  flake.nixosModules.fish = { config, lib, ... }: {
-    config = lib.mkIf (config.shell-cli.type == "fish") {
-      programs.fish.enable = true;
+  flake.homeModules.fish = { config, lib, ... }: {
+    programs.fish = lib.mkIf config.shell-cli.programs.fish.enable {
+      enable = true;
     };
   };
 }
