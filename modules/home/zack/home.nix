@@ -23,6 +23,7 @@
       useUserPackages = true;
       users.zack = {
         imports = [
+          self.homeModules.ai
           self.homeModules.browser
           self.homeModules.containers
           self.homeModules.data
@@ -43,6 +44,10 @@
           self.homeModules.zacks-vscode
           self.homeModules.zacks-zsh
         ];
+
+        ai.programs = {
+          claude-code.enable = true;
+        };
 
         browser.programs = {
           chrome.enable   = true;

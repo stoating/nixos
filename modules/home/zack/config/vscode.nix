@@ -7,6 +7,13 @@
 
     programs.vscode.profiles.default = {
       extensions = with pkgs.vscode-extensions; [
+        (anthropic.claude-code.overrideAttrs (_: {
+          src = pkgs.fetchurl {
+            name = "anthropic-claude-code.vsix";
+            url = "https://marketplace.visualstudio.com/_apis/public/gallery/publishers/anthropic/vsextensions/claude-code/2.1.92/vspackage";
+            hash = "sha256-f+6xXZVb5sYrmrH7eoon6/QoQaTnBuTnb+YnvszqyKA=";
+          };
+        }))
         bbenoist.nix
         github.copilot-chat
         jnoortheen.nix-ide

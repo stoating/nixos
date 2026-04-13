@@ -80,7 +80,7 @@ Correct:
 }
 ```
 
-See `modules/module/shell/shell.nix` and `modules/module/theming/theming.nix` for real examples.
+See `modules/module/shell-desktop/shell-desktop.nix` and `modules/module/theming/theming.nix` for real examples.
 
 Files that only assign values and never declare `options` do **not** need the `config` wrapper — keep them as bare assignments.
 
@@ -95,7 +95,7 @@ The root module for a category:
 
 ```nix
 { self, ... }: {
-  flake.homeModules.<category> = { config, lib, ... }: {
+  flake.homeModules.<category> = { lib, ... }: {
     imports = [
       self.homeModules.<tool-a>
       self.homeModules.<tool-b>
@@ -105,31 +105,47 @@ The root module for a category:
       <tool-a>.enable = lib.mkEnableOption "<Tool A description>";
       <tool-b>.enable = lib.mkEnableOption "<Tool B description>";
     };
-
-    config = lib.mkMerge [
-      (lib.mkIf config.<category>.programs.<tool-a>.enable {
-        programs.<tool-a>.enable = true;
-      })
-      (lib.mkIf config.<category>.programs.<tool-b>.enable {
-        programs.<tool-b>.enable = true;
-      })
-    ];
   };
 }
 ```
+
+The root module does **not** contain a `config` block — each tool sub-module is responsible for reading the option and gating itself.
 
 ---
 
 ## Tool Sub-Module Pattern
 
-Each tool sub-module is minimal and focused on a single tool. It sets up the package and default config unconditionally (the root module's `mkIf` gates whether it even applies):
+Each tool sub-module is minimal and focused on a single tool. It reads the enable option declared by the root module and gates itself with `lib.mkIf`:
 
 ```nix
-{ pkgs, ... }: {
-  flake.homeModules.<tool> = { pkgs, ... }: {
-    programs.<tool> = {
-      package = pkgs.<tool>;
+{ ... }: {
+  flake.homeModules.<tool> = { lib, config, ... }: {
+    programs.<tool> = lib.mkIf config.<category>.programs.<tool>.enable {
+      enable = true;
       # default configuration...
+    };
+  };
+}
+```
+
+For a single boolean assignment the inline form is also common:
+
+```nix
+programs.<tool>.enable = lib.mkIf config.<category>.programs.<tool>.enable true;
+```
+
+### Self-contained variant (theming style)
+
+Some sub-modules (e.g. `theming-bat`, `theming-gtk`) declare their own option and gate a whole `config` block, instead of reading an option from the root module. Use this when the sub-module is self-sufficient and the root module doesn't need a central option list:
+
+```nix
+{ ... }: {
+  flake.homeModules.<tool> = { lib, config, ... }: {
+    options.<category>.<tool>.enable = lib.mkEnableOption "<description>";
+
+    config = lib.mkIf config.<category>.<tool>.enable {
+      programs.<tool>.enable = true;
+      # ...
     };
   };
 }
@@ -240,15 +256,14 @@ User configs then reference this via `self.lib.<tool>.commonSettings`, using `li
 
 ## Adding a New Program — Checklist
 
-1. Create `modules/module/<category>/<tool>/<tool>.nix` — the tool sub-module.
+1. Create `modules/module/<category>/<tool>/<tool>.nix` — the tool sub-module. Gate its config with `lib.mkIf config.<category>.programs.<tool>.enable`.
 2. Add `self.homeModules.<tool>` to the imports in `modules/module/<category>/<category>.nix`.
 3. Add `<tool>.enable = lib.mkEnableOption "..."` to the root module's options.
-4. Add the `lib.mkIf` conditional in the root module's `config`.
-5. Enable the tool in `modules/home/zack/home.nix` by setting `<category>.programs.<tool>.enable = true`.
-6. If user-specific config is needed, create `modules/home/zack/config/<tool>.nix` and import it in `home.nix`.
-7. If shared defaults are needed across users, add `modules/home/common/config/<tool>.nix` exporting `flake.lib.<tool>.commonSettings`.
-8. **`git add` every new file** — `import-tree` uses git to enumerate files; unstaged files are invisible to Nix.
-9. Rebuild: `sudo nixos-rebuild switch --flake .#framework`
+4. Enable the tool in `modules/home/zack/home.nix` by setting `<category>.programs.<tool>.enable = true`.
+5. If user-specific config is needed, create `modules/home/zack/config/<tool>.nix` and import it in `home.nix`.
+6. If shared defaults are needed across users, add `modules/home/common/config/<tool>.nix` exporting `flake.lib.<tool>.commonSettings`.
+7. **`git add` every new file** — `import-tree` uses git to enumerate files; unstaged files are invisible to Nix.
+8. Rebuild: `sudo nixos-rebuild switch --flake .#framework`
 
 ---
 
