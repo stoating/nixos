@@ -115,7 +115,7 @@ The root module does **not** contain a `config` block — each tool sub-module i
 
 ## Tool Sub-Module Pattern
 
-Each tool sub-module is minimal and focused on a single tool. It reads the enable option declared by the root module and gates itself with `lib.mkIf`:
+Each tool sub-module is minimal and focused on a single tool. It reads the enable option declared by the root module and gates itself with `lib.mkIf`. Always use the block form — even when `enable = true` is the only line:
 
 ```nix
 { ... }: {
@@ -126,12 +126,6 @@ Each tool sub-module is minimal and focused on a single tool. It reads the enabl
     };
   };
 }
-```
-
-For a single boolean assignment the inline form is also common:
-
-```nix
-programs.<tool>.enable = lib.mkIf config.<category>.programs.<tool>.enable true;
 ```
 
 ### Self-contained variant (theming style)

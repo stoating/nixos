@@ -1,5 +1,7 @@
 { ... }: {
   flake.homeModules.chrome = { lib, config, ... }: {
-    programs.google-chrome.enable = lib.mkIf config.browser.programs.chrome.enable true;
+    programs.google-chrome = lib.mkIf config.browser.programs.chrome.enable {
+      enable = true;
+    };
   };
 }

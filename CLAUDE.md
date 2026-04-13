@@ -71,7 +71,7 @@ Each category's root module (`<category>.nix`) imports all tool sub-modules and 
 
 ### Tool sub-module pattern
 
-Each sub-module reads the enable option and gates itself with `lib.mkIf`:
+Each sub-module reads the enable option and gates itself with `lib.mkIf`. Always use the block form — even when `enable = true` is the only line:
 
 ```nix
 { ... }: {
@@ -83,8 +83,6 @@ Each sub-module reads the enable option and gates itself with `lib.mkIf`:
   };
 }
 ```
-
-Single-boolean shorthand is also common: `programs.<tool>.enable = lib.mkIf config.<category>.programs.<tool>.enable true;`
 
 **Self-contained variant** (used by theming sub-modules): the sub-module declares its own option and a `config = lib.mkIf` block, skipping the root module's option list entirely.
 

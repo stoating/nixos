@@ -1,5 +1,7 @@
 { ... }: {
   flake.homeModules.fd = { lib, config, ... }: {
-    programs.fd.enable = lib.mkIf config.files.programs.fd.enable true;
+    programs.fd = lib.mkIf config.files.programs.fd.enable {
+      enable = true;
+    };
   };
 }
