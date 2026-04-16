@@ -53,6 +53,7 @@
         ai.programs = {
           claude-code.enable    = true;
           claude-desktop.enable = true;
+          whisper-cpp.enable    = true;
         };
 
         browser.programs = {
@@ -132,7 +133,10 @@
 
         media.programs = {
           asciinema.enable    = true;
+          auto-editor.enable  = true;
           discord.enable      = true;
+          ffmpeg.enable       = true;
+          kdenlive.enable     = true;
           obs-studio.enable   = true;
           pear-desktop.enable = true;
         };
