@@ -1,5 +1,7 @@
 { ... }: {
-  flake.homeModules.asciinema = { pkgs, lib, config, ... }: {
-    home.packages = lib.mkIf config.media.programs.asciinema.enable [ pkgs.asciinema_3 ];
+  flake.homeModules.asciinema = { lib, config, ... }: {
+    programs.asciinema = lib.mkIf config.media.programs.asciinema.enable {
+      enable = true;
+    };
   };
 }

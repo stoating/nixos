@@ -42,6 +42,7 @@
           self.homeModules.zacks-cursor
           self.homeModules.zacks-noctalia
           self.homeModules.zacks-vscode
+          self.homeModules.zacks-xdg
           self.homeModules.zacks-zsh
         ];
 

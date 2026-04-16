@@ -1,5 +1,15 @@
 { ... }: {
   flake.homeModules.obs-studio = { pkgs, lib, config, ... }: {
-    home.packages = lib.mkIf config.media.programs.obs-studio.enable [ pkgs.obs-studio ];
+    programs.obs-studio = lib.mkIf config.media.programs.obs-studio.enable {
+      enable = true;
+      plugins = with pkgs.obs-studio-plugins; [
+        wlrobs
+        obs-backgroundremoval
+        obs-pipewire-audio-capture
+        obs-vaapi
+        obs-gstreamer
+        obs-vkcapture
+      ];
+    };
   };
 }
