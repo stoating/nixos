@@ -24,6 +24,7 @@
       users.zack = {
         imports = [
           self.homeModules.ai
+          self.homeModules.backup
           self.homeModules.browser
           self.homeModules.containers
           self.homeModules.data
@@ -41,10 +42,13 @@
           self.homeModules.zacks-chromium
           self.homeModules.zacks-cursor
           self.homeModules.zacks-noctalia
+          self.homeModules.zacks-restic
           self.homeModules.zacks-vscode
           self.homeModules.zacks-xdg
           self.homeModules.zacks-zsh
         ];
+
+        backup.programs.restic.enable = true;
 
         ai.programs = {
           claude-code.enable    = true;

@@ -34,10 +34,10 @@
 
     home.file.".cache/noctalia/wallpapers.json" = {
       text = builtins.toJSON {
-        defaultWallpaper = "/home/zack/images/desktop/wallpaper.jpg";
+        defaultWallpaper = "/home/zack/pictures/desktop/wallpaper.jpg";
         wallpapers = {
-          "DP-1"  = "/home/zack/images/desktop/wallpaper.jpg";
-          "eDP-2" = "/home/zack/images/desktop/wallpaper.jpg";
+          "DP-1"  = "/home/zack/pictures/desktop/wallpaper.jpg";
+          "eDP-2" = "/home/zack/pictures/desktop/wallpaper.jpg";
         };
       };
     };
