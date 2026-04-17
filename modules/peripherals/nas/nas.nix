@@ -33,10 +33,6 @@
         default     = "/mnt/nas";
         description = "Primary mount point for the SMB share.";
       };
-      localMount = lib.mkOption {
-        type        = lib.types.str;
-        description = "Bind-mount path in the user's home directory.";
-      };
       synologyDrive = lib.mkOption {
         type        = lib.types.bool;
         default     = false;
@@ -50,7 +46,6 @@
 
       systemd.tmpfiles.rules = [
         "d ${config.nas.mountPoint} 0755 ${config.nas.user} users -"
-        "d ${config.nas.localMount} 0755 ${config.nas.user} users -"
       ];
 
       fileSystems."${config.nas.mountPoint}" = {
@@ -62,20 +57,10 @@
           "gid=${toString config.nas.gid}"
           "x-systemd.automount"
           "noauto"
+          "nofail"
           "x-systemd.idle-timeout=60"
           "x-systemd.device-timeout=5s"
           "x-systemd.mount-timeout=5s"
-        ];
-      };
-
-      fileSystems."${config.nas.localMount}" = {
-        device  = config.nas.mountPoint;
-        fsType  = "none";
-        options = [
-          "bind"
-          "noauto"
-          "x-systemd.automount"
-          "x-systemd.requires-mounts-for=${config.nas.mountPoint}"
         ];
       };
 

@@ -29,6 +29,7 @@
         "github.copilot.nextEditSuggestions.enabled" = true;
         "git.enableSmartCommit" = true;
         "git.autofetch" = true;
+        "terminal.integrated.defaultProfile.linux" = "zsh";
         "nix.enableLanguageServer" = true;
         "nix.serverPath" = "nixd";
         "nix.serverSettings" = {
