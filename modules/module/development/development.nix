@@ -5,6 +5,7 @@
       self.homeModules.gh
       self.homeModules.lazygit
       self.homeModules.direnv
+      self.homeModules.delta
     ];
 
     options.development.programs = {
@@ -12,6 +13,7 @@
       gh.enable      = lib.mkEnableOption "GitHub CLI";
       lazygit.enable = lib.mkEnableOption "Lazygit";
       direnv.enable  = lib.mkEnableOption "direnv";
+      delta.enable   = lib.mkEnableOption "delta";
     };
   };
 }

@@ -45,6 +45,7 @@
           self.homeModules.zacks-restic
           self.homeModules.zacks-vscode
           self.homeModules.zacks-xdg
+          self.homeModules.zacks-fzf
           self.homeModules.zacks-zsh
         ];
 
@@ -73,6 +74,7 @@
           gh.enable      = true;
           lazygit.enable = true;
           direnv.enable  = true;
+          delta.enable   = true;
         };
 
         editor.programs = {
