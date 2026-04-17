@@ -4,7 +4,12 @@
     default = {};
   };
 
-  config = {
+  options.flake.lib = lib.mkOption {
+    type    = lib.types.attrsOf lib.types.anything;
+    default = {};
+  };
+
+config = {
     systems = [
       "x86_64-linux"
     ];

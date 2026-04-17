@@ -1,5 +1,8 @@
-{ ... }: {
-  flake.homeModules.zacks-vscode = { pkgs, ... }: {
+{ self, ... }: {
+  flake.homeModules.zacks-vscode = { pkgs, ... }:
+  let
+    theme = self.lib.theme;
+  in {
     home.packages = with pkgs; [
       nixd
       nixfmt
@@ -7,6 +10,7 @@
 
     programs.vscode.profiles.default = {
       extensions = with pkgs.vscode-extensions; [
+        arcticicestudio.nord-visual-studio-code
         (anthropic.claude-code.overrideAttrs (_: {
           src = pkgs.fetchurl {
             name = "anthropic-claude-code.vsix";
@@ -19,6 +23,7 @@
         jnoortheen.nix-ide
       ];
       userSettings = {
+        "workbench.colorTheme" = theme.vscode;
         "explorer.confirmDelete" = true;
         "explorer.confirmDragAndDrop" = true;
         "github.copilot.nextEditSuggestions.enabled" = true;

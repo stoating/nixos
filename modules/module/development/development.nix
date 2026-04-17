@@ -6,6 +6,7 @@
       self.homeModules.lazygit
       self.homeModules.direnv
       self.homeModules.delta
+      self.homeModules.python
     ];
 
     options.development.programs = {
@@ -14,6 +15,7 @@
       lazygit.enable = lib.mkEnableOption "Lazygit";
       direnv.enable  = lib.mkEnableOption "direnv";
       delta.enable   = lib.mkEnableOption "delta";
+      python.enable  = lib.mkEnableOption "Python 3";
     };
   };
 }

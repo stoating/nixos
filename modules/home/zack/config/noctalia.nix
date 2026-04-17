@@ -23,7 +23,7 @@
       };
 
       colorSchemes = {
-        predefinedScheme = "Eldritch";
+        predefinedScheme = self.lib.theme.noctalia;
       };
 
       sessionMenu = {

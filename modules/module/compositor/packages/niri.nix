@@ -15,6 +15,12 @@ in {
       description = "Niri key bindings.";
     };
 
+    options.niri.extraConfig = lib.mkOption {
+      type    = lib.types.lines;
+      default = "";
+      description = "Extra niri config appended verbatim.";
+    };
+
     config.programs.niri = {
       enable = true;
       package = inputs.wrapper-modules.wrappers.niri.wrap {
@@ -34,7 +40,7 @@ in {
             xcursor-size  = cursor-size;
           };
 
-          extraConfig = lib.concatMapStrings (mon:
+          extraConfig = config.niri.extraConfig + lib.concatMapStrings (mon:
             "output \"${mon.name}\" {\n"
             + lib.optionalString (mon.scale != 1.0) "  scale ${toString mon.scale}\n"
             + "  position x=${toString mon.position.x} y=${toString mon.position.y}\n"

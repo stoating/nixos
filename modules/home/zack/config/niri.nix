@@ -1,8 +1,52 @@
-{ config, ... }:
+{ self, config, ... }:
 let
   launcher-command = config.flake.shell-desktop.launcher-command;
+  opacity          = self.lib.theme.opacity.editor;
 in {
   flake.nixosModules.zacks-niri = { pkgs, lib, ... }: {
+    niri.extraConfig = ''
+      window-rule {
+        match app-id="code"
+        opacity ${opacity}
+      }
+      window-rule {
+        match app-id="firefox"
+        opacity ${opacity}
+      }
+      window-rule {
+        match app-id="discord"
+        opacity ${opacity}
+      }
+      window-rule {
+        match app-id="google-chrome"
+        opacity ${opacity}
+      }
+      window-rule {
+        match app-id="chromium-browser"
+        opacity ${opacity}
+      }
+      window-rule {
+        match app-id="pear-desktop"
+        opacity ${opacity}
+      }
+      window-rule {
+        match app-id="io.podman_desktop.PodmanDesktop"
+        opacity ${opacity}
+      }
+      window-rule {
+        match app-id="org.keepassxc.KeePassXC"
+        opacity ${opacity}
+      }
+      window-rule {
+        match app-id="org.kde.kdenlive"
+        opacity ${opacity}
+      }
+      window-rule {
+        match app-id="com.obsproject.Studio"
+        opacity ${opacity}
+      }
+    '';
+
     niri.binds = {
       # --- Compositor ---
       "Mod+F1".show-hotkey-overlay = _: {};

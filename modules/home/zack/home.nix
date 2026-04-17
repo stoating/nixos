@@ -46,6 +46,7 @@
           self.homeModules.zacks-vscode
           self.homeModules.zacks-xdg
           self.homeModules.zacks-fzf
+          self.homeModules.zacks-theme
           self.homeModules.zacks-zsh
         ];
 
@@ -75,6 +76,7 @@
           lazygit.enable = true;
           direnv.enable  = true;
           delta.enable   = true;
+          python.enable  = true;
         };
 
         editor.programs = {
