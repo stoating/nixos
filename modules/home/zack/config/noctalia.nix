@@ -2,9 +2,9 @@
   flake.homeModules.zacks-noctalia = { lib, ... }: {
     programs.noctalia-shell.settings = lib.recursiveUpdate self.lib.noctalia.commonSettings {
       settingsVersion = 59;
-      general.avatarImage = "/home/zack/images/profile/stoat.png";
+      general.avatarImage = "/home/zack/pictures/profile/stoat.png";
       location.name      = "Stuttgart, DE";
-      wallpaper.directory = "/home/zack/images/desktop";
+      wallpaper.directory = "/home/zack/pictures/wallpapers";
 
       bar = {
         barType = "framed";
@@ -34,10 +34,10 @@
 
     home.file.".cache/noctalia/wallpapers.json" = {
       text = builtins.toJSON {
-        defaultWallpaper = "/home/zack/pictures/desktop/wallpaper.jpg";
+        defaultWallpaper = "/home/zack/pictures/wallpapers/wallpaper.jpg";
         wallpapers = {
-          "DP-1"  = "/home/zack/pictures/desktop/wallpaper.jpg";
-          "eDP-2" = "/home/zack/pictures/desktop/wallpaper.jpg";
+          "DP-1"  = "/home/zack/pictures/wallpapers/wallpaper.jpg";
+          "eDP-2" = "/home/zack/pictures/wallpapers/wallpaper.jpg";
         };
       };
     };
