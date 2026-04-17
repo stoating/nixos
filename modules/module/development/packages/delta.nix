@@ -1,7 +1,8 @@
 { self, ... }: {
   flake.homeModules.delta = { lib, config, ... }: {
-    programs.git.delta = lib.mkIf config.development.programs.delta.enable {
+    programs.delta = lib.mkIf config.development.programs.delta.enable {
       enable = true;
+      enableGitIntegration = true;
       options = {
         navigate = true;
         side-by-side = true;

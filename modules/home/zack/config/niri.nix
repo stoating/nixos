@@ -1,51 +1,38 @@
 { self, config, ... }:
 let
   launcher-command = config.flake.shell-desktop.launcher-command;
-  opacity          = self.lib.theme.opacity.editor;
+  opacity-active   = self.lib.theme.opacity.window-active;
+  opacity-inactive = self.lib.theme.opacity.window-inactive;
+
+  opaque-apps = [
+    "firefox"
+    "discord"
+    "chromium-browser"
+    "pear-desktop"
+    "io.podman_desktop.PodmanDesktop"
+    "org.keepassxc.KeePassXC"
+    "org.kde.kdenlive"
+    "com.obsproject.Studio"
+  ];
 in {
   flake.nixosModules.zacks-niri = { pkgs, lib, ... }: {
-    niri.extraConfig = ''
-      window-rule {
-        match app-id="code"
-        opacity ${opacity}
-      }
-      window-rule {
-        match app-id="firefox"
-        opacity ${opacity}
-      }
-      window-rule {
-        match app-id="discord"
-        opacity ${opacity}
-      }
-      window-rule {
-        match app-id="google-chrome"
-        opacity ${opacity}
-      }
-      window-rule {
-        match app-id="chromium-browser"
-        opacity ${opacity}
-      }
-      window-rule {
-        match app-id="pear-desktop"
-        opacity ${opacity}
-      }
-      window-rule {
-        match app-id="io.podman_desktop.PodmanDesktop"
-        opacity ${opacity}
-      }
-      window-rule {
-        match app-id="org.keepassxc.KeePassXC"
-        opacity ${opacity}
-      }
-      window-rule {
-        match app-id="org.kde.kdenlive"
-        opacity ${opacity}
-      }
-      window-rule {
-        match app-id="com.obsproject.Studio"
-        opacity ${opacity}
-      }
-    '';
+    niri.extraConfig =
+      ''
+        window-rule {
+          match is-active=true
+          opacity ${opacity-active}
+        }
+        window-rule {
+          match is-active=false
+          opacity ${opacity-inactive}
+        }
+      '' +
+      lib.concatMapStrings (app: ''
+        window-rule {
+          match app-id="${app}"
+          opacity 1.0
+        }
+      '') opaque-apps;
 
     niri.binds = {
       # --- Compositor ---
