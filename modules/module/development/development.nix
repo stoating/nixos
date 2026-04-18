@@ -5,6 +5,7 @@
       self.homeModules.gh
       self.homeModules.lazygit
       self.homeModules.direnv
+      self.homeModules.devenv
       self.homeModules.delta
       self.homeModules.python
       self.homeModules.uv
@@ -20,6 +21,7 @@
         gh.enable      = lib.mkEnableOption "GitHub CLI";
         lazygit.enable = lib.mkEnableOption "Lazygit";
         direnv.enable  = lib.mkEnableOption "direnv";
+        devenv.enable  = lib.mkEnableOption "devenv";
         delta.enable   = lib.mkEnableOption "delta";
       };
       languages = {

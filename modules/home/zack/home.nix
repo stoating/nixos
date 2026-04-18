@@ -76,6 +76,7 @@
           gh.enable      = true;
           lazygit.enable = true;
           direnv.enable  = true;
+          devenv.enable  = true;
           delta.enable   = true;
         };
 
