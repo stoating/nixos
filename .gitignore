@@ -1,0 +1,10 @@
+# Nix build outputs
+result
+result-*
+
+# Local tool state
+.codex
+.codex/
+.claude/settings.local.json
+.direnv/
+.devenv/
