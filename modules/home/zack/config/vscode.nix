@@ -19,9 +19,28 @@
             curlOptsList = [ "--compressed" ];
           };
         }))
+        (pkgs.vscode-utils.extensionFromVscodeMarketplace {
+          publisher = "djblue";
+          name      = "portal";
+          version   = "latest";
+          sha256    = "1sq6dx9an0f4w8cfl6irjldvwgc7df2ly7n4wdbj53x09ykiaf6b";
+        })
+        (pkgs.vscode-utils.extensionFromVscodeMarketplace {
+          publisher = "medo64";
+          name      = "render-crlf";
+          version   = "latest";
+          sha256    = "0n84jw2ljv1h9dl8cfmywmm9zz3j5lhzxhb280pip31psdf9ik4q";
+        })
         bbenoist.nix
+        betterthantomorrow.calva
+        davidanson.vscode-markdownlint
+        esbenp.prettier-vscode
         github.copilot-chat
+        irongeek.vscode-env
         jnoortheen.nix-ide
+        redhat.vscode-yaml
+        shardulm94.trailing-spaces
+        zainchen.json
       ];
       userSettings = {
         "workbench.colorTheme" = theme.vscode;
@@ -30,6 +49,8 @@
         "github.copilot.nextEditSuggestions.enabled" = true;
         "git.enableSmartCommit" = true;
         "git.autofetch" = true;
+        "editor.renderWhitespace" = "all";
+        "editor.renderControlCharacters" = true;
         "terminal.integrated.defaultProfile.linux" = "zsh";
         "nix.enableLanguageServer" = true;
         "nix.serverPath" = "nixd";
