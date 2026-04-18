@@ -8,6 +8,7 @@
       self.homeModules.navi
       self.homeModules.tldr
       self.homeModules.starship
+      self.homeModules.comma
     ];
 
     options.shell-tools.programs = {
@@ -18,6 +19,7 @@
       navi.enable          = lib.mkEnableOption "navi";
       tldr.enable          = lib.mkEnableOption "tldr";
       starship.enable      = lib.mkEnableOption "starship";
+      comma.enable         = lib.mkEnableOption "comma";
     };
   };
 }

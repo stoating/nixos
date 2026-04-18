@@ -137,6 +137,7 @@
           navi.enable          = true;
           starship.enable      = true;
           tldr.enable          = true;
+          comma.enable         = true;
           zoxide.enable        = true;
         };
 
