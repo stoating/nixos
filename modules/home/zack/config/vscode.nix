@@ -10,7 +10,10 @@
 
     programs.vscode.profiles.default = {
       extensions = with pkgs.vscode-extensions; [
-        arcticicestudio.nord-visual-studio-code
+        ({
+          "Nord" = arcticicestudio.nord-visual-studio-code;
+          "Ayu"  = teabyii.ayu;
+        }.${theme.name})
         (anthropic.claude-code.overrideAttrs (_: {
           src = pkgs.fetchurl {
             name = "anthropic-claude-code.vsix";

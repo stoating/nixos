@@ -7,7 +7,10 @@
         enable = true;
         theme = {
           name    = self.lib.theme.gtk;
-          package = pkgs.nordic;
+          package = {
+            "Nordic"   = pkgs.nordic;
+            "Ayu-Dark" = pkgs.ayu-theme-gtk;
+          }.${self.lib.theme.gtk} or pkgs.nordic;
         };
         gtk3.extraConfig.gtk-application-prefer-dark-theme = 1;
         gtk4 = {
