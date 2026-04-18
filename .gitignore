@@ -8,3 +8,6 @@ result-*
 .claude/settings.local.json
 .direnv/
 .devenv/
+
+# Nix-managed skill files (pinned via flake.lock, placed by home-manager)
+nixos-managing

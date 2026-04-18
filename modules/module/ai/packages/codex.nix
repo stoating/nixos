@@ -1,4 +1,4 @@
-{ ... }: {
+{ inputs, ... }: {
   flake.homeModules.codex = { lib, config, pkgs, ... }: {
     home.packages = lib.mkIf config.ai.programs.codex.enable [
       (pkgs.codex.overrideAttrs (old: rec {
@@ -16,5 +16,10 @@
         };
       }))
     ];
+
+    # Place skill files in the repo root so AGENTS.md can reference them
+    home.file."nixos/nixos-managing" = lib.mkIf config.ai.programs.codex.enable {
+      source = "${inputs.nixos-management-skill}/nixos-managing";
+    };
   };
 }

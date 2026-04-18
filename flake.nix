@@ -8,10 +8,10 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    
+
     flake-parts.url = "github:hercules-ci/flake-parts";
     import-tree.url = "github:vic/import-tree";
-    
+
     wrapper-modules.url = "github:BirdeeHub/nix-wrapper-modules";
     noctalia.url = "github:noctalia-dev/noctalia-shell/v4.7.2";
 
@@ -21,6 +21,8 @@
     };
 
     claude-desktop.url = "github:k3d3/claude-desktop-linux-flake";
+    nixos-management-skill.url = "github:michalzubkowicz/nixos-management-skill";
+    nixos-management-skill.flake = false;
 
     # To pin VSCode: replace with url = "github:nixos/nixpkgs/<commit>";
     vscode.follows = "nixpkgs";

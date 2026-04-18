@@ -90,6 +90,22 @@
         "type": "github"
       }
     },
+    "nixos-management-skill": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1776511780,
+        "narHash": "sha256-Dn+EiN75z3Np4TdXR3VYVX2PBdSO2biTOaBlKkWO49M=",
+        "owner": "michalzubkowicz",
+        "repo": "nixos-management-skill",
+        "rev": "92db94a1ec406ac8110ea7765fbc247ec6c54c25",
+        "type": "github"
+      },
+      "original": {
+        "owner": "michalzubkowicz",
+        "repo": "nixos-management-skill",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1749174413,
@@ -218,6 +234,7 @@
         "flake-parts": "flake-parts",
         "home-manager": "home-manager",
         "import-tree": "import-tree",
+        "nixos-management-skill": "nixos-management-skill",
         "nixpkgs": "nixpkgs_2",
         "noctalia": "noctalia",
         "vscode": [

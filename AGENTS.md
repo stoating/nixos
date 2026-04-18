@@ -7,6 +7,27 @@ Guidance for Codex and other coding agents working in this repository.
 These instructions apply to the entire repository. Follow more specific `AGENTS.md`
 files if they are added in subdirectories.
 
+## NixOS Management Skill
+
+The `nixos-managing/` directory at the repo root contains a structured skill
+for managing NixOS systems. It is placed there by Nix (pinned via `flake.lock`,
+sourced from `michalzubkowicz/nixos-management-skill`) and is gitignored.
+
+1. Treat `nixos-managing/SKILL.md` as the entry point — it contains a decision
+   table pointing to the right reference file for the task.
+2. Load reference files on demand based on that table:
+   - `configuration.md` — flakes, modules, packages, services, secrets
+   - `vm-management.md` — `nixos-rebuild`, generations, rollback, remote deploy
+   - `installation.md` — initial install, disko, hardware configuration
+   - `image-building.md` — ISO, VM, disk images
+   - `impermanence.md` — ephemeral root, wipe-on-boot
+   - `luks.md` — disk encryption, remote unlock (SSH, Tailscale)
+   - `monitoring.md` — health checks and alerting
+   - `anti-patterns.md` — common mistakes
+3. Verify every NixOS option before suggesting it.
+4. Ask about execution context (local vs. remote deploy) before suggesting
+   commands.
+
 ## Rebuild
 
 Run rebuilds from `/home/zack/nixos`:
