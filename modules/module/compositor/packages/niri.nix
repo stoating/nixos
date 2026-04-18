@@ -15,6 +15,12 @@ in {
       description = "Niri key bindings.";
     };
 
+    options.niri.layout = lib.mkOption {
+      type    = lib.types.attrs;
+      default = {};
+      description = "Niri layout settings (merged into settings.layout).";
+    };
+
     options.niri.extraConfig = lib.mkOption {
       type    = lib.types.lines;
       default = "";
@@ -39,6 +45,8 @@ in {
             xcursor-theme = cursor-name;
             xcursor-size  = cursor-size;
           };
+
+          layout    = config.niri.layout;
 
           extraConfig = config.niri.extraConfig + lib.concatMapStrings (mon:
             "output \"${mon.name}\" {\n"

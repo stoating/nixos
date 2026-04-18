@@ -67,8 +67,8 @@ in {
     inherit name;
     opacity = {
       terminal               = "0.9";
-      editor                 = "0.95";
-      window-active          = "0.95";
+      editor                 = "0.97";
+      window-active          = "0.97";
       window-inactive        = "0.90";
     };
   };

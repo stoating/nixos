@@ -16,6 +16,10 @@ let
   ];
 in {
   flake.nixosModules.zacks-niri = { pkgs, lib, ... }: {
+    niri.layout = {
+      focus-ring.off = _: {};
+    };
+
     niri.extraConfig =
       ''
         window-rule {

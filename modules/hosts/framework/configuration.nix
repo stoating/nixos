@@ -58,13 +58,13 @@
       powerOnBoot  = false;
     };
 
-    # Force niri to use only the GNOME portal backend.
-    # The default niri-portals.conf includes gtk as a fallback, but
-    # xdg-desktop-portal-gtk times out on startup (25s per interface),
-    # causing Ghostty and the file manager to hang for ~15s on first launch.
-    # The GNOME portal handles every interface the GTK portal does.
+    # Keep xdg-desktop-portal from activating the GTK backend under niri.
+    # It times out during startup and blocks first app launches, including Ghostty.
     xdg.portal.config.niri = {
       default = lib.mkForce [ "gnome" ];
+      "org.freedesktop.impl.portal.Access" = lib.mkForce [ "gnome" ];
+      "org.freedesktop.impl.portal.Notification" = lib.mkForce [ "gnome" ];
+      "org.freedesktop.impl.portal.Inhibit" = lib.mkForce [ "none" ];
       "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
     };
 
