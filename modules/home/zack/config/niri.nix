@@ -62,6 +62,9 @@ in {
       "Mod+BracketLeft".consume-or-expel-window-left   = _: {};
       "Mod+BracketRight".consume-or-expel-window-right = _: {};
 
+      # --- Wallpaper ---
+      "Mod+Shift+W".spawn = [ "noctalia-shell" "ipc" "call" "wallpaper" "random" "" ];
+
       # --- Workspaces ---
       "Mod+Up".focus-workspace-up                    = _: {};
       "Mod+Down".focus-workspace-down                = _: {};

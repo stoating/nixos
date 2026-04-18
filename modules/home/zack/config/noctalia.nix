@@ -4,7 +4,9 @@
       settingsVersion = 59;
       general.avatarImage = "/home/zack/pictures/profile/stoat.png";
       location.name      = "Stuttgart, DE";
-      wallpaper.directory = "/home/zack/pictures/wallpapers";
+      wallpaper.directory       = "/home/zack/pictures/wallpapers";
+      wallpaper.automationEnabled = true;
+      wallpaper.randomIntervalSec = 600;
 
       bar = {
         barType = "framed";
