@@ -20,10 +20,13 @@
       networkmanager.enable = true;
     };
 
-    nix.settings.experimental-features = [
-      "nix-command"
-      "flakes"
-    ];
+    nix.settings = {
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
+      trusted-users = [ "root" "zack" ];
+    };
 
     time.timeZone = "Europe/Berlin";
 
@@ -76,7 +79,7 @@
     users.users.zack = {
       isNormalUser = true;
       description  = "zack";
-      extraGroups  = [ "networkmanager" "wheel" ];
+      extraGroups  = [ "networkmanager" "wheel" "video" ];
     };
 
     nixpkgs.config.allowUnfree = true;

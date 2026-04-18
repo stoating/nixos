@@ -1,6 +1,6 @@
 { self, config, ... }:
 let
-  launcher-command = config.flake.shell-desktop.launcher-command;
+  launcher-command        = config.flake.shell-desktop.launcher-command;
   opacity-active   = self.lib.theme.opacity.window-active;
   opacity-inactive = self.lib.theme.opacity.window-inactive;
 

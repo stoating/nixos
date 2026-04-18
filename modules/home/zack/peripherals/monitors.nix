@@ -1,12 +1,12 @@
-{ ... }: {
+{ self, ... }: {
   flake.nixosModules.zacks-monitors = { ... }: {
     monitors = [
       {
-        name     = "DP-1";
+        name     = self.lib.monitors.hp;
         position = { x = 0; y = 0; };
       }
       {
-        name     = "eDP-2";
+        name     = self.lib.monitors.fw;
         scale    = 1.5;
         position = { x = 1920; y = 0; };
       }

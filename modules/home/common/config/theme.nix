@@ -48,10 +48,12 @@ in {
   flake.lib.theme = active // {
     inherit name;
     opacity = {
-      terminal        = "0.9";
-      editor          = "0.95";
-      window-active   = "0.95";
-      window-inactive = "0.90";
+      terminal               = "0.9";
+      editor                 = "0.95";
+      window-active          = "0.95";
+      window-inactive        = "0.90";
+      window-active-bright   = "0.98";
+      window-inactive-bright = "0.93";
     };
   };
 }

@@ -14,8 +14,9 @@
         (anthropic.claude-code.overrideAttrs (_: {
           src = pkgs.fetchurl {
             name = "anthropic-claude-code.vsix";
-            url = "https://marketplace.visualstudio.com/_apis/public/gallery/publishers/anthropic/vsextensions/claude-code/2.1.92/vspackage";
-            hash = "sha256-f+6xXZVb5sYrmrH7eoon6/QoQaTnBuTnb+YnvszqyKA=";
+            url = "https://marketplace.visualstudio.com/_apis/public/gallery/publishers/anthropic/vsextensions/claude-code/2.1.114/vspackage";
+            hash = "sha256-rcEbeYsyhbhh5wj6Mo3kz2+K3uZe5XMBKpwmSaB9Pgc=";
+            curlOptsList = [ "--compressed" ];
           };
         }))
         bbenoist.nix

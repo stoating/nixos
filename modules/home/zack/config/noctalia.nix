@@ -1,5 +1,5 @@
 { self, ... }: {
-  flake.homeModules.zacks-noctalia = { lib, ... }: {
+  flake.homeModules.zacks-noctalia = { lib, pkgs, ... }: {
     programs.noctalia-shell.settings = lib.recursiveUpdate self.lib.noctalia.commonSettings {
       settingsVersion = 59;
       general.avatarImage = "/home/zack/pictures/profile/stoat.png";
@@ -26,6 +26,11 @@
 
       colorSchemes = {
         predefinedScheme = self.lib.theme.noctalia;
+      };
+
+      hooks = {
+        enabled = true;
+        startup = "${pkgs.brightnessctl}/bin/brightnessctl set 60%";
       };
 
       sessionMenu = {
