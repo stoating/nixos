@@ -94,10 +94,21 @@
       sudo.wheelNeedsPassword = true;
     };
 
+    virtualisation = {
+      docker.enable = true;
+      podman.enable = true;
+    };
+
+    nix.gc = {
+      automatic = true;
+      dates     = "weekly";
+      options   = "--delete-older-than 30d";
+    };
+
     users.users.zack = {
       isNormalUser = true;
       description  = "zack";
-      extraGroups  = [ "networkmanager" "wheel" "video" ];
+      extraGroups  = [ "networkmanager" "wheel" "video" "docker" ];
     };
 
     nixpkgs.config.allowUnfree = true;

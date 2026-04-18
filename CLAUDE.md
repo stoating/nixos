@@ -73,7 +73,7 @@ modules/
 
 ### Module categories
 
-All homeModules unless noted. Options live under `config.<category>.programs.<tool>.enable` (or `config.<category>.languages.<tool>.enable` for development languages).
+All homeModules unless noted. Options live under `config.<category>.programs.<tool>.enable` (or `config.<category>.languages.<tool>.enable` for development languages, `config.development."language-tools".<tool>.enable` for language-adjacent tools like uv and clj-kondo).
 
 | Category | Programs / options |
 | ---------- | -------------------- |
@@ -82,7 +82,7 @@ All homeModules unless noted. Options live under `config.<category>.programs.<to
 | `browser` | chrome, chromium, firefox |
 | `containers` | docker, podman, podman-desktop |
 | `data` | jq, yq |
-| `development` | **programs:** git, gh, lazygit, direnv, devenv, delta — **languages:** python, uv, clojure, nodejs, jdk, clj-kondo |
+| `development` | **programs:** git, gh, lazygit, direnv, devenv, delta — **languages:** python, clojure, nodejs, jdk — **language-tools:** uv, clj-kondo |
 | `editor` | vscode, vim, neovim, emacs |
 | `files` | fd, ripgrep, yazi, mc |
 | `media` | asciinema, auto-editor, ffmpeg, discord, kdenlive, obs-studio, pear-desktop |

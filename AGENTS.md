@@ -102,8 +102,8 @@ Current categories:
 - `browser`: chrome, chromium, firefox
 - `containers`: docker, podman, podman-desktop
 - `data`: jq, yq
-- `development`: git, gh, lazygit, direnv, devenv, delta, python, uv,
-  clojure, nodejs, jdk, clj-kondo
+- `development`: git, gh, lazygit, direnv, devenv, delta, python, clojure,
+  nodejs, jdk — language-tools: uv, clj-kondo
 - `editor`: vscode, vim, neovim, emacs
 - `files`: fd, ripgrep, yazi, mc
 - `media`: asciinema, auto-editor, ffmpeg, discord, kdenlive, obs-studio,

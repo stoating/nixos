@@ -81,11 +81,14 @@
         };
 
         development.languages = {
-          python.enable    = true;
-          uv.enable        = true;
-          clojure.enable   = true;
-          nodejs.enable    = true;
-          jdk.enable       = true;
+          python.enable  = true;
+          clojure.enable = true;
+          nodejs.enable  = true;
+          jdk.enable     = true;
+        };
+
+        development."language-tools" = {
+          uv.enable          = true;
           "clj-kondo".enable = true;
         };
 

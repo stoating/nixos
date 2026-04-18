@@ -25,11 +25,13 @@
         delta.enable   = lib.mkEnableOption "delta";
       };
       languages = {
-        python.enable     = lib.mkEnableOption "Python 3";
-        uv.enable         = lib.mkEnableOption "uv";
-        clojure.enable    = lib.mkEnableOption "Clojure";
-        nodejs.enable     = lib.mkEnableOption "Node.js";
-        jdk.enable        = lib.mkEnableOption "JDK";
+        python.enable  = lib.mkEnableOption "Python 3";
+        clojure.enable = lib.mkEnableOption "Clojure";
+        nodejs.enable  = lib.mkEnableOption "Node.js";
+        jdk.enable     = lib.mkEnableOption "JDK";
+      };
+      "language-tools" = {
+        uv.enable          = lib.mkEnableOption "uv";
         "clj-kondo".enable = lib.mkEnableOption "clj-kondo";
       };
     };

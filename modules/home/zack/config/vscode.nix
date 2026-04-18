@@ -22,13 +22,13 @@
         (pkgs.vscode-utils.extensionFromVscodeMarketplace {
           publisher = "djblue";
           name      = "portal";
-          version   = "latest";
+          version   = "0.63.1";
           sha256    = "1sq6dx9an0f4w8cfl6irjldvwgc7df2ly7n4wdbj53x09ykiaf6b";
         })
         (pkgs.vscode-utils.extensionFromVscodeMarketplace {
           publisher = "medo64";
           name      = "render-crlf";
-          version   = "latest";
+          version   = "1.9.4";
           sha256    = "0n84jw2ljv1h9dl8cfmywmm9zz3j5lhzxhb280pip31psdf9ik4q";
         })
         bbenoist.nix
