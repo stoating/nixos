@@ -7,6 +7,7 @@
       self.homeModules.direnv
       self.homeModules.delta
       self.homeModules.python
+      self.homeModules.uv
       self.homeModules.clojure
       self.homeModules.nodejs
       self.homeModules.jdk
@@ -23,6 +24,7 @@
       };
       languages = {
         python.enable     = lib.mkEnableOption "Python 3";
+        uv.enable         = lib.mkEnableOption "uv";
         clojure.enable    = lib.mkEnableOption "Clojure";
         nodejs.enable     = lib.mkEnableOption "Node.js";
         jdk.enable        = lib.mkEnableOption "JDK";

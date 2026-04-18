@@ -55,6 +55,7 @@
         ai.programs = {
           claude-code.enable    = true;
           claude-desktop.enable = true;
+          codex.enable          = true;
           whisper-cpp.enable    = true;
         };
 
@@ -80,6 +81,7 @@
 
         development.languages = {
           python.enable    = true;
+          uv.enable        = true;
           clojure.enable   = true;
           nodejs.enable    = true;
           jdk.enable       = true;
