@@ -1,6 +1,6 @@
 { self, ... }: {
 
-  flake.nixosModules.framework-configuration = { pkgs, config, ... }: {
+  flake.nixosModules.framework-configuration = { pkgs, lib, config, ... }: {
     imports = [
       self.nixosModules.framework-hardware
       self.nixosModules.home-zack
@@ -48,6 +48,16 @@
     hardware.bluetooth = {
       enable       = true;
       powerOnBoot  = false;
+    };
+
+    # Force niri to use only the GNOME portal backend.
+    # The default niri-portals.conf includes gtk as a fallback, but
+    # xdg-desktop-portal-gtk times out on startup (25s per interface),
+    # causing Ghostty and the file manager to hang for ~15s on first launch.
+    # The GNOME portal handles every interface the GTK portal does.
+    xdg.portal.config.niri = {
+      default = lib.mkForce [ "gnome" ];
+      "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
     };
 
     services = {
