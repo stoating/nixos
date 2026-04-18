@@ -66,9 +66,9 @@ in {
   flake.lib.theme = active // {
     inherit name;
     opacity = {
-      terminal               = "0.9";
-      editor                 = "0.97";
-      window-active          = "0.97";
+      terminal               = "0.90";
+      editor                 = "0.95";
+      window-active          = "0.95";
       window-inactive        = "0.90";
     };
   };
