@@ -7,15 +7,27 @@
       self.homeModules.direnv
       self.homeModules.delta
       self.homeModules.python
+      self.homeModules.clojure
+      self.homeModules.nodejs
+      self.homeModules.jdk
+      self.homeModules."clj-kondo"
     ];
 
-    options.development.programs = {
-      git.enable     = lib.mkEnableOption "Git";
-      gh.enable      = lib.mkEnableOption "GitHub CLI";
-      lazygit.enable = lib.mkEnableOption "Lazygit";
-      direnv.enable  = lib.mkEnableOption "direnv";
-      delta.enable   = lib.mkEnableOption "delta";
-      python.enable  = lib.mkEnableOption "Python 3";
+    options.development = {
+      programs = {
+        git.enable     = lib.mkEnableOption "Git";
+        gh.enable      = lib.mkEnableOption "GitHub CLI";
+        lazygit.enable = lib.mkEnableOption "Lazygit";
+        direnv.enable  = lib.mkEnableOption "direnv";
+        delta.enable   = lib.mkEnableOption "delta";
+      };
+      languages = {
+        python.enable     = lib.mkEnableOption "Python 3";
+        clojure.enable    = lib.mkEnableOption "Clojure";
+        nodejs.enable     = lib.mkEnableOption "Node.js";
+        jdk.enable        = lib.mkEnableOption "JDK";
+        "clj-kondo".enable = lib.mkEnableOption "clj-kondo";
+      };
     };
   };
 }

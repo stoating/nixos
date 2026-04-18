@@ -76,7 +76,14 @@
           lazygit.enable = true;
           direnv.enable  = true;
           delta.enable   = true;
-          python.enable  = true;
+        };
+
+        development.languages = {
+          python.enable    = true;
+          clojure.enable   = true;
+          nodejs.enable    = true;
+          jdk.enable       = true;
+          "clj-kondo".enable = true;
         };
 
         editor.programs = {
