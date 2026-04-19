@@ -9,11 +9,11 @@ files if they are added in subdirectories.
 
 ## NixOS Management Skill
 
-The `nixos-managing/` directory at the repo root contains a structured skill
+The `.claude/skills/nixos-managing/` directory contains a structured skill
 for managing NixOS systems. It is placed there by Nix (pinned via `flake.lock`,
 sourced from `michalzubkowicz/nixos-management-skill`) and is gitignored.
 
-1. Treat `nixos-managing/SKILL.md` as the entry point — it contains a decision
+1. Treat `.claude/skills/nixos-managing/SKILL.md` as the entry point — it contains a decision
    table pointing to the right reference file for the task.
 2. Load reference files on demand based on that table:
    - `configuration.md` — flakes, modules, packages, services, secrets
