@@ -55,6 +55,13 @@
         "editor.renderWhitespace" = "all";
         "editor.renderControlCharacters" = true;
         "terminal.integrated.defaultProfile.linux" = "zsh";
+        "markdownlint.config" = {
+          "MD022" = false;
+          "MD031" = false;
+          "MD032" = false;
+          "MD040" = false;
+          "MD060" = false;
+        };
         "nix.enableLanguageServer" = true;
         "nix.serverPath" = "nixd";
         "nix.serverSettings" = {
