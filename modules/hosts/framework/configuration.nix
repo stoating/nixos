@@ -9,9 +9,25 @@
     boot = {
       loader.systemd-boot.enable = true;
       loader.efi.canTouchEfiVariables = true;
+      loader.timeout = 0;
       kernelPackages = pkgs.linuxPackages_latest;
-      initrd.luks.devices."luks-e13d7e39-2fc5-4ce4-8f3c-420e2197a26b".device =
-        "/dev/disk/by-uuid/e13d7e39-2fc5-4ce4-8f3c-420e2197a26b";
+      kernelParams = [ "quiet" "udev.log_level=3" "systemd.show_status=auto" ];
+      consoleLogLevel = 3;
+      initrd = {
+        verbose = false;
+        systemd.enable = true;
+        luks.devices."luks-e13d7e39-2fc5-4ce4-8f3c-420e2197a26b".device =
+          "/dev/disk/by-uuid/e13d7e39-2fc5-4ce4-8f3c-420e2197a26b";
+      };
+      plymouth = {
+        enable = true;
+        theme = "owl";
+        themePackages = with pkgs; [
+          (adi1090x-plymouth-themes.override {
+            selected_themes = [ "owl" ];
+          })
+        ];
+      };
     };
 
     networking = {
