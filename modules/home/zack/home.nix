@@ -48,6 +48,7 @@
           self.homeModules.zacks-fzf
           self.homeModules.zacks-theme
           self.homeModules.zacks-zsh
+          self.homeModules.zacks-ssh
         ];
 
         backup.programs.restic.enable = true;
