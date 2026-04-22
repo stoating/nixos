@@ -8,6 +8,8 @@
       wallpaper.automationEnabled = true;
       wallpaper.randomIntervalSec = 600;
 
+      noctaliaPerformance.disableWallpaper = false;
+
       bar = {
         barType = "framed";
         density = "compact";

@@ -2,6 +2,7 @@
 
   flake.nixosModules.framework-configuration = { pkgs, lib, config, ... }:
   let
+    colors = self.lib.theme.colors;
     elegant-grub2-theme = pkgs.stdenv.mkDerivation {
       pname = "elegant-grub2-theme";
       version = "unstable-2026-04-21";
@@ -136,6 +137,123 @@
       "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
     };
 
+    programs.regreet = {
+      enable = true;
+
+      settings = {
+        background = {
+          path = "/var/lib/regreet/background.jpg";
+          fit  = "Cover";
+        };
+        GTK.application_prefer_dark_theme = true;
+      };
+
+      extraCss = ''
+        /* Login and clock frames */
+        frame.background {
+          background-color: alpha(${colors.c0}, 0.88);
+          border-color: alpha(${colors.c3}, 0.6);
+          border-radius: 12px;
+        }
+
+        frame.background > * {
+          background-color: transparent;
+        }
+
+        label {
+          color: ${colors.c4};
+        }
+
+        /* Text entries and password entry */
+        entry {
+          background-color: ${colors.c1};
+          color: ${colors.c4};
+          border-color: ${colors.c3};
+          caret-color: ${colors.c9};
+        }
+
+        entry:focus {
+          border-color: ${colors.c9};
+        }
+
+        /* User / session combo boxes */
+        combobox > button {
+          background-color: ${colors.c1};
+          color: ${colors.c4};
+          border-color: ${colors.c3};
+        }
+
+        combobox > button:hover {
+          background-color: ${colors.c2};
+          color: ${colors.c6};
+        }
+
+        /* Login button */
+        button.suggested-action {
+          background-color: ${colors.c9};
+          color: ${colors.c0};
+          font-weight: bold;
+        }
+
+        button.suggested-action:hover {
+          background-color: ${colors.c8};
+        }
+
+        /* Cancel button */
+        button.text-button {
+          background-color: ${colors.c2};
+          color: ${colors.c4};
+          border-color: ${colors.c3};
+        }
+
+        button.text-button:hover {
+          background-color: ${colors.c3};
+          color: ${colors.c6};
+        }
+
+        /* Edit-toggle buttons (pencil icons) */
+        togglebutton {
+          background-color: ${colors.c1};
+          color: ${colors.c4};
+          border-color: ${colors.c3};
+        }
+
+        togglebutton:checked {
+          background-color: ${colors.c9};
+          color: ${colors.c0};
+        }
+
+        /* Reboot / Power Off */
+        button.destructive-action {
+          background-color: alpha(${colors.c11}, 0.85);
+          color: ${colors.c0};
+          font-weight: bold;
+        }
+
+        button.destructive-action:hover {
+          background-color: ${colors.c11};
+        }
+
+        /* Error info bar */
+        infobar {
+          background-color: alpha(${colors.c11}, 0.15);
+          border-color: alpha(${colors.c11}, 0.5);
+        }
+
+        infobar label {
+          color: ${colors.c11};
+        }
+      '';
+    };
+
+    system.activationScripts.regreet-wallpaper.text = ''
+      src=/home/zack/pictures/wallpapers/daniel-leone-v7daTKlZzaw-unsplash.jpg
+      dst=/var/lib/regreet/background.jpg
+      if [ -f "$src" ] && { [ ! -f "$dst" ] || [ "$src" -nt "$dst" ]; }; then
+        install -Dm644 "$src" "$dst"
+      fi
+    '';
+
     services = {
       xserver = {
         enable = true;
@@ -144,8 +262,7 @@
           variant = config.keyboard.xkb.variant;
         };
       };
-      displayManager.gdm.enable = true;
-      desktopManager.gnome.enable = true;
+      desktopManager.gnome.enable = true;  # provides xdg-desktop-portal-gnome
       pulseaudio.enable = false;
       pipewire = {
         enable            = true;
