@@ -284,6 +284,8 @@
       podman.enable = true;
     };
 
+    systemd.settings.Manager.DefaultTimeoutStopSec = "5s";
+
     nix.gc = {
       automatic = true;
       dates     = "weekly";

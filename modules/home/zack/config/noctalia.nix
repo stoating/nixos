@@ -36,8 +36,8 @@
       };
 
       sessionMenu = {
-        largeButtonsStyle  = true;
-        largeButtonsLayout = "single-row";
+        largeButtonsStyle  = false;
+        countdownDuration  = 5000;
       };
     };
 
