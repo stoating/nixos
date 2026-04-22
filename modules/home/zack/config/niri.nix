@@ -1,6 +1,6 @@
 { self, config, ... }:
 let
-  launcher-command        = config.flake.shell-desktop.launcher-command;
+  launcher-command = config.flake.shell-desktop.launcher-command;
   opacity-active   = self.lib.theme.opacity.window-active;
   opacity-inactive = self.lib.theme.opacity.window-inactive;
 
@@ -16,6 +16,10 @@ let
   ];
 in {
   flake.nixosModules.zacks-niri = { pkgs, lib, ... }: {
+    niri.input.touchpad.natural-scroll = _: {};
+    niri.input.touchpad.scroll-factor = 0.7;
+    niri.input.touchpad.accel-speed = 0.3;
+
     niri.layout = {
       focus-ring.off = _: {};
     };

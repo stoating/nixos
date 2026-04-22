@@ -27,6 +27,12 @@ in {
       description = "Extra niri config appended verbatim.";
     };
 
+    options.niri.input = lib.mkOption {
+      type    = lib.types.attrs;
+      default = {};
+      description = "Niri input settings (merged with keyboard defaults).";
+    };
+
     config.programs.niri = {
       enable = true;
       package = inputs.wrapper-modules.wrappers.niri.wrap {
@@ -36,9 +42,11 @@ in {
 
           xwayland-satellite.path = lib.getExe pkgs.xwayland-satellite;
 
-          input.keyboard.xkb = {
-            layout  = keyboard-layout;
-            variant = keyboard-variant;
+          input = lib.recursiveUpdate config.niri.input {
+            keyboard.xkb = {
+              layout  = keyboard-layout;
+              variant = keyboard-variant;
+            };
           };
 
           cursor = {
@@ -46,7 +54,7 @@ in {
             xcursor-size  = cursor-size;
           };
 
-          layout    = config.niri.layout;
+          layout = config.niri.layout;
 
           extraConfig = config.niri.extraConfig + lib.concatMapStrings (mon:
             "output \"${mon.name}\" {\n"
