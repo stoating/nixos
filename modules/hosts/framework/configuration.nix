@@ -2,7 +2,7 @@
 
   flake.nixosModules.framework-configuration = { pkgs, lib, config, ... }:
   let
-    colors = self.lib.theme.colors;
+    c = self.lib.theme.colors;
     elegant-grub2-theme = pkgs.stdenv.mkDerivation {
       pname = "elegant-grub2-theme";
       version = "unstable-2026-04-21";
@@ -61,8 +61,8 @@
         device      = "nodev";
         theme       = elegant-grub2-theme;
         gfxmodeEfi  = "2560x1600,2560x1440,auto";
-        timeout     = 3;
       };
+      loader.timeout = 3;
       kernelPackages = pkgs.linuxPackages_latest;
       kernelParams = [ "quiet" "udev.log_level=3" "systemd.show_status=auto" ];
       consoleLogLevel = 3;
@@ -137,124 +137,21 @@
       "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
     };
 
-    programs.regreet = {
-      enable = true;
-
-      settings = {
-        background = {
-          path = "/var/lib/regreet/background.jpg";
-          fit  = "Cover";
-        };
-        GTK.application_prefer_dark_theme = true;
-      };
-
-      extraCss = ''
-        /* Login and clock frames */
-        frame.background {
-          background-color: alpha(${colors.c0}, 0.88);
-          border-color: alpha(${colors.c3}, 0.6);
-          border-radius: 12px;
-        }
-
-        frame.background > * {
-          background-color: transparent;
-        }
-
-        label {
-          color: ${colors.c4};
-        }
-
-        /* Text entries and password entry */
-        entry {
-          background-color: ${colors.c1};
-          color: ${colors.c4};
-          border-color: ${colors.c3};
-          caret-color: ${colors.c9};
-        }
-
-        entry:focus {
-          border-color: ${colors.c9};
-        }
-
-        /* User / session combo boxes */
-        combobox > button {
-          background-color: ${colors.c1};
-          color: ${colors.c4};
-          border-color: ${colors.c3};
-        }
-
-        combobox > button:hover {
-          background-color: ${colors.c2};
-          color: ${colors.c6};
-        }
-
-        /* Login button */
-        button.suggested-action {
-          background-color: ${colors.c9};
-          color: ${colors.c0};
-          font-weight: bold;
-        }
-
-        button.suggested-action:hover {
-          background-color: ${colors.c8};
-        }
-
-        /* Cancel button */
-        button.text-button {
-          background-color: ${colors.c2};
-          color: ${colors.c4};
-          border-color: ${colors.c3};
-        }
-
-        button.text-button:hover {
-          background-color: ${colors.c3};
-          color: ${colors.c6};
-        }
-
-        /* Edit-toggle buttons (pencil icons) */
-        togglebutton {
-          background-color: ${colors.c1};
-          color: ${colors.c4};
-          border-color: ${colors.c3};
-        }
-
-        togglebutton:checked {
-          background-color: ${colors.c9};
-          color: ${colors.c0};
-        }
-
-        /* Reboot / Power Off */
-        button.destructive-action {
-          background-color: alpha(${colors.c11}, 0.85);
-          color: ${colors.c0};
-          font-weight: bold;
-        }
-
-        button.destructive-action:hover {
-          background-color: ${colors.c11};
-        }
-
-        /* Error info bar */
-        infobar {
-          background-color: alpha(${colors.c11}, 0.15);
-          border-color: alpha(${colors.c11}, 0.5);
-        }
-
-        infobar label {
-          color: ${colors.c11};
-        }
-      '';
-    };
-
-    system.activationScripts.regreet-wallpaper.text = ''
-      src=/home/zack/pictures/wallpapers/daniel-leone-v7daTKlZzaw-unsplash.jpg
-      dst=/var/lib/regreet/background.jpg
-      if [ -f "$src" ] && { [ ! -f "$dst" ] || [ "$src" -nt "$dst" ]; }; then
-        install -Dm644 "$src" "$dst"
-      fi
-    '';
-
     services = {
+      greetd = {
+        enable = true;
+        settings.default_session.command = ''
+          ${pkgs.tuigreet}/bin/tuigreet \
+            --time \
+            --remember \
+            --remember-session \
+            --asterisks \
+            --window-padding 0 \
+            --greeting "join us" \
+            --theme "text=${c.c3};time=${c.c3};container=${c.c3};border=${c.c3};title=${c.c3};greet=${c.c2};prompt=${c.c2};input=${c.c6};action=${c.c3};button=${c.c2}" \
+            --sessions /run/current-system/sw/share/wayland-sessions
+        '';
+      };
       seatd.enable = true;
       libinput.touchpad.naturalScrolling = true;
       xserver = {
@@ -274,7 +171,12 @@
       };
     };
 
-    console.keyMap = config.keyboard.xkb.layout;
+    console = {
+      keyMap = config.keyboard.xkb.layout;
+      font = "ter-v32n";
+      packages = [ pkgs.terminus_font ];
+      earlySetup = true;
+    };
 
     security = {
       rtkit.enable = true;
@@ -299,17 +201,6 @@
       description  = "zack";
       extraGroups  = [ "networkmanager" "wheel" "video" "docker" ];
     };
-
-    # Give the regreet greeter user a writable home (fixes /var/empty/.cache warning)
-    # and seat group access so libseat uses seatd instead of logind.
-    users.users.greeter = {
-      home        = "/var/lib/regreet/home";
-      extraGroups = [ "seat" "video" ];
-    };
-
-    systemd.tmpfiles.rules = [
-      "d /var/lib/regreet/home 0700 greeter greeter -"
-    ];
 
     nixpkgs.config.allowUnfree = true;
 
