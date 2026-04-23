@@ -255,6 +255,7 @@
     '';
 
     services = {
+      seatd.enable = true;
       libinput.touchpad.naturalScrolling = true;
       xserver = {
         enable = true;
@@ -298,6 +299,17 @@
       description  = "zack";
       extraGroups  = [ "networkmanager" "wheel" "video" "docker" ];
     };
+
+    # Give the regreet greeter user a writable home (fixes /var/empty/.cache warning)
+    # and seat group access so libseat uses seatd instead of logind.
+    users.users.greeter = {
+      home        = "/var/lib/regreet/home";
+      extraGroups = [ "seat" "video" ];
+    };
+
+    systemd.tmpfiles.rules = [
+      "d /var/lib/regreet/home 0700 greeter greeter -"
+    ];
 
     nixpkgs.config.allowUnfree = true;
 
