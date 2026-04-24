@@ -188,61 +188,67 @@
           }
 
           #form-wrapper {
-            background-color: rgba(31, 36, 48, 0.82);
-            border: 1px solid rgba(110, 128, 152, 0.45);
+            /* GTK CSS does not reliably accept #RRGGBBAA literals here. */
+            background-color: alpha(${c.c0}, 0.72);
             border-radius: 20px;
-            padding: 32px;
+            padding: 22px;
+            min-width: 320px;
           }
 
           entry {
-            background-color: rgba(42, 49, 61, 0.92);
-            color: #e6e1cf;
-            border: 1px solid rgba(110, 128, 152, 0.35);
+            background-color: alpha(${c.c2}, 0.8);
+            color: ${c.c6};
+            border: 0px;
             border-radius: 18px;
-            padding: 12px;
+            padding: 8px 12px;
           }
 
           entry:focus {
-            border-color: rgba(115, 208, 255, 0.9);
+            border: 1px solid ${c.c8};
           }
 
           button {
-            background: rgba(42, 49, 61, 0.9) none;
-            color: #e6e1cf;
-            border: 1px solid rgba(110, 128, 152, 0.35);
+            background-color: alpha(${c.c2}, 0.8);
+            color: ${c.c6};
+            border: 0px;
             border-radius: 18px;
-            padding: 12px;
+            padding: 8px 14px;
+            font-size: 14px;
           }
 
           button:hover {
-            background-color: rgba(52, 63, 76, 0.96);
+            background-color: alpha(${c.c3}, 0.88);
           }
 
           #power-button {
             border-radius: 18px;
-            background: rgba(42, 49, 61, 0.6) none;
-            border: none;
+            background-color: alpha(${c.c2}, 0.6);
+            border: 0px;
+            color: ${c.c6};
+            padding: 10px 16px;
+            font-size: 16px;
           }
 
           #power-button:hover {
-            background-color: rgba(52, 63, 76, 0.82);
+            background-color: alpha(${c.c3}, 0.82);
           }
 
           #power-button:active {
-            background-color: rgba(57, 186, 230, 0.28);
+            background-color: alpha(${c.c9}, 0.28);
           }
 
           label {
-            color: #e6e1cf;
+            color: ${c.c6};
           }
 
           checkbutton {
-            color: #cbccc6;
+            color: ${c.c4};
+            font-size: 13px;
           }
 
           checkbutton check {
-            background-color: rgba(42, 49, 61, 0.92);
-            border: 1px solid rgba(110, 128, 152, 0.4);
+            background-color: alpha(${c.c2}, 0.8);
+            border: 0px;
             border-radius: 6px;
           }
 
@@ -250,48 +256,56 @@
           combobox box,
           combobox button,
           #form-combo {
-            background-color: rgba(42, 49, 61, 0.9);
-            color: #e6e1cf;
+            background-color: alpha(${c.c2}, 0.8);
+            color: ${c.c6};
             border-radius: 18px;
-            border: 1px solid rgba(110, 128, 152, 0.35);
+            border: 0px;
           }
 
           #welcome-label {
-            color: #e6e1cf;
+            color: ${c.c6};
             font-size: 48px;
+            font-weight: 300;
           }
 
           #clock-label {
-            color: #73d0ff;
+            color: ${c.c8};
             font-family: monospace;
             font-size: 30px;
+            letter-spacing: 0.05em;
           }
 
           #date-label {
-            color: #cbccc6;
+            color: ${c.c4};
             font-size: 18px;
           }
 
           #form-label {
-            color: #cbccc6;
+            color: ${c.c4};
+            font-size: 14px;
           }
 
           #form-combo {
-            background-color: rgba(42, 49, 61, 0.9);
+            background-color: alpha(${c.c2}, 0.8);
           }
 
           #password-entry {
-            background-color: rgba(42, 49, 61, 0.92);
+            background-color: alpha(${c.c2}, 0.8);
+            color: ${c.c6};
           }
 
           #login-button {
-            background: rgba(57, 186, 230, 0.18) none;
-            border-color: rgba(115, 208, 255, 0.45);
-            color: #e6e1cf;
+            background-color: alpha(${c.c9}, 0.18);
+            color: ${c.c6};
+            border: 0px;
+            border-radius: 18px;
+            padding: 10px;
+            font-size: 14px;
+            margin-top: 4px;
           }
 
           #login-button:hover {
-            background-color: rgba(57, 186, 230, 0.28);
+            background-color: alpha(${c.c9}, 0.28);
           }
         '';
       };
