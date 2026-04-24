@@ -20,6 +20,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     claude-desktop.url = "github:k3d3/claude-desktop-linux-flake";
     nixos-management-skill.url = "github:michalzubkowicz/nixos-management-skill";
     nixos-management-skill.flake = false;

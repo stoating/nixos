@@ -3,6 +3,7 @@
   flake.nixosModules.framework-configuration = { pkgs, lib, config, ... }:
   let
     c = self.lib.theme.colors;
+    greeterBackground = ./assets/greeter-background.jpg;
     nwg-hello-fixed = pkgs.nwg-hello.overrideAttrs (old: {
       postFixup = (old.postFixup or "") + ''
         substituteInPlace $out/lib/python*/site-packages/nwg_hello/main.py \
@@ -147,7 +148,6 @@
       pathsToLink = [ "/share/wayland-sessions" "/share/xsessions" ];
       etc = {
         "nwg-hello/sway-config".text = ''
-          output * bg /var/lib/greet/background.jpg fill
           exec "${nwg-hello-fixed}/bin/nwg-hello --config /etc/nwg-hello/nwg-hello.json --stylesheet /etc/nwg-hello/nwg-hello.css; ${pkgs.sway}/bin/swaymsg exit"
         '';
         "nwg-hello/nwg-hello.json".text = builtins.toJSON {
@@ -208,13 +208,15 @@
           @define-color hello-border rgba(77, 152, 204, 0.58);
           @define-color hello-border-strong rgba(115, 208, 255, 0.82);
 
-          /* Keep the wallpaper owned by sway so GTK never replaces it with the theme window color. */
           window {
             background-color: transparent;
-            background-image: none;
+            background-image: url("file://${greeterBackground}");
+            background-size: auto 100%;
+            background-repeat: no-repeat;
+            background-position: center center;
           }
 
-          /* Keep parent containers clear so the sway wallpaper shows through. */
+          /* Keep child containers clear so the window background remains visible. */
           box {
             background-color: transparent;
             background-image: none;
@@ -481,10 +483,6 @@
       podman.enable = true;
     };
 
-    systemd.tmpfiles.rules = [
-      "d /var/cache/nwg-hello 0750 greeter greeter -"
-    ];
-
     systemd.settings.Manager.DefaultTimeoutStopSec = "5s";
 
     nix.gc = {
@@ -492,15 +490,6 @@
       dates     = "weekly";
       options   = "--delete-older-than 30d";
     };
-
-    system.activationScripts.greet-background.text = ''
-      dest=/var/lib/greet/background.jpg
-      src=/home/zack/pictures/wallpapers/daniel-leone-v7daTKlZzaw-unsplash.jpg
-      if [ ! -f "$dest" ]; then
-        mkdir -p /var/lib/greet
-        cp "$src" "$dest"
-      fi
-    '';
 
     nixpkgs.config.allowUnfree = true;
 

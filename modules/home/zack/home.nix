@@ -28,6 +28,7 @@
           self.homeModules.browser
           self.homeModules.containers
           self.homeModules.data
+          self.homeModules.database
           self.homeModules.development
           self.homeModules.editor
           self.homeModules.files
@@ -115,6 +116,10 @@
           yq.enable = true;
         };
 
+        database.programs = {
+          nix-index.enable = true;
+        };
+
         files.programs = {
           fd.enable      = true;
           ripgrep.enable = true;
@@ -141,7 +146,6 @@
           navi.enable          = true;
           starship.enable      = true;
           tldr.enable          = true;
-          comma.enable         = true;
           zoxide.enable        = true;
         };
 
