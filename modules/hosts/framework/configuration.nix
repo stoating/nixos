@@ -236,6 +236,7 @@
             border: 1px solid @hello-border;
             border-radius: 18px;
             padding: 8px 12px;
+            font-size: 16px;
             box-shadow: none;
             text-shadow: none;
           }
@@ -261,7 +262,7 @@
             border: 1px solid @hello-border;
             border-radius: 18px;
             padding: 8px 14px;
-            font-size: 14px;
+            font-size: 16px;
             box-shadow: none;
             text-shadow: none;
             outline: none;
@@ -293,7 +294,7 @@
             border: 1px solid rgba(77, 152, 204, 0.38);
             color: @hello-text;
             padding: 10px 16px;
-            font-size: 16px;
+            font-size: 18px;
           }
 
           #power-button:hover {
@@ -308,11 +309,12 @@
 
           label {
             color: @hello-text;
+            font-size: 16px;
           }
 
           checkbutton {
             color: @hello-muted;
-            font-size: 13px;
+            font-size: 16px;
           }
 
           checkbutton check {
@@ -339,6 +341,7 @@
             color: @hello-text;
             border-radius: 18px;
             border: 1px solid @hello-border;
+            font-size: 16px;
             box-shadow: none;
             text-shadow: none;
           }
@@ -363,18 +366,18 @@
           #clock-label {
             color: #73D0FF;
             font-family: monospace;
-            font-size: 30px;
+            font-size: 32px;
             letter-spacing: 0.05em;
           }
 
           #date-label {
             color: @hello-muted;
-            font-size: 18px;
+            font-size: 20px;
           }
 
           #form-label {
             color: @hello-muted;
-            font-size: 14px;
+            font-size: 16px;
           }
 
           #form-combo {
@@ -393,7 +396,7 @@
             border: 1px solid rgba(57, 186, 230, 0.52);
             border-radius: 18px;
             padding: 10px;
-            font-size: 14px;
+            font-size: 16px;
             margin-top: 4px;
             box-shadow: none;
             text-shadow: none;
