@@ -137,20 +137,190 @@
       "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
     };
 
+    environment = {
+      pathsToLink = [ "/share/wayland-sessions" "/share/xsessions" ];
+      etc = {
+        "nwg-hello/sway-config".text = ''
+          output * bg /var/lib/greet/background.jpg fill
+          exec "${pkgs.nwg-hello}/bin/nwg-hello --config /etc/nwg-hello/nwg-hello.json --stylesheet /etc/nwg-hello/nwg-hello.css; ${pkgs.sway}/bin/swaymsg exit"
+        '';
+        "nwg-hello/nwg-hello.json".text = builtins.toJSON {
+          session_dirs = [
+            "/run/current-system/sw/share/wayland-sessions"
+            "/run/current-system/sw/share/xsessions"
+          ];
+          custom_sessions   = [];
+          monitor_nums      = [];
+          form_on_monitors  = [];
+          delay_secs        = 1;
+          cmd-sleep         = "systemctl suspend";
+          cmd-reboot        = "systemctl reboot";
+          cmd-poweroff      = "systemctl poweroff";
+          gtk-theme         = self.lib.theme.gtk;
+          gtk-icon-theme    = "";
+          gtk-cursor-theme  = "";
+          prefer-dark-theme = true;
+          template-name     = "";
+          time-format       = "%H:%M:%S";
+          date-format       = "%A, %d. %B";
+          layer             = "overlay";
+          keyboard-mode     = "on_demand";
+          lang              = "";
+          avatar-show       = false;
+          avatar-size       = 100;
+          avatar-border-width  = 1;
+          avatar-border-color  = c.c6;
+          avatar-corner-radius = 15;
+          avatar-circle        = false;
+          env-vars             = [];
+        };
+        "nwg-hello/nwg-hello.css".text = ''
+          /* Keep the wallpaper owned by sway so GTK never replaces it with the theme window color. */
+          window {
+            background-color: transparent;
+            background-image: none;
+          }
+
+          /* Keep parent containers clear so the sway wallpaper shows through. */
+          box {
+            background-color: transparent;
+            background-image: none;
+          }
+
+          #form-wrapper {
+            background-color: rgba(31, 36, 48, 0.82);
+            border: 1px solid rgba(110, 128, 152, 0.45);
+            border-radius: 20px;
+            padding: 32px;
+          }
+
+          entry {
+            background-color: rgba(42, 49, 61, 0.92);
+            color: #e6e1cf;
+            border: 1px solid rgba(110, 128, 152, 0.35);
+            border-radius: 18px;
+            padding: 12px;
+          }
+
+          entry:focus {
+            border-color: rgba(115, 208, 255, 0.9);
+          }
+
+          button {
+            background: rgba(42, 49, 61, 0.9) none;
+            color: #e6e1cf;
+            border: 1px solid rgba(110, 128, 152, 0.35);
+            border-radius: 18px;
+            padding: 12px;
+          }
+
+          button:hover {
+            background-color: rgba(52, 63, 76, 0.96);
+          }
+
+          #power-button {
+            border-radius: 18px;
+            background: rgba(42, 49, 61, 0.6) none;
+            border: none;
+          }
+
+          #power-button:hover {
+            background-color: rgba(52, 63, 76, 0.82);
+          }
+
+          #power-button:active {
+            background-color: rgba(57, 186, 230, 0.28);
+          }
+
+          label {
+            color: #e6e1cf;
+          }
+
+          checkbutton {
+            color: #cbccc6;
+          }
+
+          checkbutton check {
+            background-color: rgba(42, 49, 61, 0.92);
+            border: 1px solid rgba(110, 128, 152, 0.4);
+            border-radius: 6px;
+          }
+
+          combobox,
+          combobox box,
+          combobox button,
+          #form-combo {
+            background-color: rgba(42, 49, 61, 0.9);
+            color: #e6e1cf;
+            border-radius: 18px;
+            border: 1px solid rgba(110, 128, 152, 0.35);
+          }
+
+          #welcome-label {
+            color: #e6e1cf;
+            font-size: 48px;
+          }
+
+          #clock-label {
+            color: #73d0ff;
+            font-family: monospace;
+            font-size: 30px;
+          }
+
+          #date-label {
+            color: #cbccc6;
+            font-size: 18px;
+          }
+
+          #form-label {
+            color: #cbccc6;
+          }
+
+          #form-combo {
+            background-color: rgba(42, 49, 61, 0.9);
+          }
+
+          #password-entry {
+            background-color: rgba(42, 49, 61, 0.92);
+          }
+
+          #login-button {
+            background: rgba(57, 186, 230, 0.18) none;
+            border-color: rgba(115, 208, 255, 0.45);
+            color: #e6e1cf;
+          }
+
+          #login-button:hover {
+            background-color: rgba(57, 186, 230, 0.28);
+          }
+        '';
+      };
+    };
+
+    users = {
+      users.greeter = {
+        isSystemUser = true;
+        group        = "greeter";
+        extraGroups  = [ "seat" "video" ];
+      };
+      users.zack = {
+        isNormalUser = true;
+        description  = "zack";
+        extraGroups  = [ "networkmanager" "wheel" "video" "docker" ];
+      };
+      groups.greeter = {};
+    };
+
     services = {
       greetd = {
         enable = true;
-        settings.default_session.command = ''
-          ${pkgs.tuigreet}/bin/tuigreet \
-            --time \
-            --remember \
-            --remember-session \
-            --asterisks \
-            --window-padding 0 \
-            --greeting "join us" \
-            --theme "text=${c.c3};time=${c.c3};container=${c.c3};border=${c.c3};title=${c.c3};greet=${c.c2};prompt=${c.c2};input=${c.c6};action=${c.c3};button=${c.c2}" \
-            --sessions /run/current-system/sw/share/wayland-sessions
-        '';
+        settings = {
+          terminal.vt = 1;
+          default_session = {
+            command = "${pkgs.sway}/bin/sway --config /etc/nwg-hello/sway-config";
+            user    = "greeter";
+          };
+        };
       };
       seatd.enable = true;
       libinput.touchpad.naturalScrolling = true;
@@ -188,6 +358,10 @@
       podman.enable = true;
     };
 
+    systemd.tmpfiles.rules = [
+      "d /var/cache/nwg-hello 0750 greeter greeter -"
+    ];
+
     systemd.settings.Manager.DefaultTimeoutStopSec = "5s";
 
     nix.gc = {
@@ -196,11 +370,14 @@
       options   = "--delete-older-than 30d";
     };
 
-    users.users.zack = {
-      isNormalUser = true;
-      description  = "zack";
-      extraGroups  = [ "networkmanager" "wheel" "video" "docker" ];
-    };
+    system.activationScripts.greet-background.text = ''
+      dest=/var/lib/greet/background.jpg
+      src=/home/zack/pictures/wallpapers/daniel-leone-v7daTKlZzaw-unsplash.jpg
+      if [ ! -f "$dest" ]; then
+        mkdir -p /var/lib/greet
+        cp "$src" "$dest"
+      fi
+    '';
 
     nixpkgs.config.allowUnfree = true;
 
