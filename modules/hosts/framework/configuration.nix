@@ -3,6 +3,12 @@
   flake.nixosModules.framework-configuration = { pkgs, lib, config, ... }:
   let
     c = self.lib.theme.colors;
+    nwg-hello-fixed = pkgs.nwg-hello.overrideAttrs (old: {
+      postFixup = (old.postFixup or "") + ''
+        substituteInPlace $out/lib/python*/site-packages/nwg_hello/main.py \
+          --replace-fail "$out/etc/nwg-hello" "/etc/nwg-hello"
+      '';
+    });
     elegant-grub2-theme = pkgs.stdenv.mkDerivation {
       pname = "elegant-grub2-theme";
       version = "unstable-2026-04-21";
@@ -142,7 +148,7 @@
       etc = {
         "nwg-hello/sway-config".text = ''
           output * bg /var/lib/greet/background.jpg fill
-          exec "${pkgs.nwg-hello}/bin/nwg-hello --config /etc/nwg-hello/nwg-hello.json --stylesheet /etc/nwg-hello/nwg-hello.css; ${pkgs.sway}/bin/swaymsg exit"
+          exec "${nwg-hello-fixed}/bin/nwg-hello --config /etc/nwg-hello/nwg-hello.json --stylesheet /etc/nwg-hello/nwg-hello.css; ${pkgs.sway}/bin/swaymsg exit"
         '';
         "nwg-hello/nwg-hello.json".text = builtins.toJSON {
           session_dirs = [
@@ -165,7 +171,7 @@
           date-format       = "%A, %d. %B";
           layer             = "overlay";
           keyboard-mode     = "on_demand";
-          lang              = "";
+          lang              = "en_US";
           avatar-show       = false;
           avatar-size       = 100;
           avatar-border-width  = 1;
@@ -174,7 +180,34 @@
           avatar-circle        = false;
           env-vars             = [];
         };
+        "nwg-hello/en_US".text = builtins.toJSON {
+          failed-starting-session = "failed to start session";
+          login = "login";
+          login-failed = "login failed";
+          password = "password";
+          password-empty = "password cannot be empty";
+          power-off = "power off";
+          session = "session";
+          show-password = "show password";
+          sleep = "sleep";
+          reboot = "reboot";
+          user = "user";
+          welcome = "<(^_^)>";
+        };
         "nwg-hello/nwg-hello.css".text = ''
+          @define-color hello-bg #1F2430;
+          @define-color hello-surface #2A313D;
+          @define-color hello-surface-hover #343F4C;
+          @define-color hello-surface-strong #232A35;
+          @define-color hello-text #E6E1CF;
+          @define-color hello-muted #CBCCC6;
+          @define-color hello-accent #39BAE6;
+          @define-color hello-accent-hover #4D98CC;
+          @define-color hello-accent-soft rgba(57, 186, 230, 0.18);
+          @define-color hello-accent-soft-hover rgba(57, 186, 230, 0.28);
+          @define-color hello-border rgba(77, 152, 204, 0.58);
+          @define-color hello-border-strong rgba(115, 208, 255, 0.82);
+
           /* Keep the wallpaper owned by sway so GTK never replaces it with the theme window color. */
           window {
             background-color: transparent;
@@ -188,124 +221,196 @@
           }
 
           #form-wrapper {
-            /* GTK CSS does not reliably accept #RRGGBBAA literals here. */
-            background-color: alpha(${c.c0}, 0.72);
+            background-color: rgba(31, 36, 48, 0.74);
             border-radius: 20px;
+            border: 1px solid rgba(77, 152, 204, 0.24);
             padding: 22px;
             min-width: 320px;
           }
 
           entry {
-            background-color: alpha(${c.c2}, 0.8);
-            color: ${c.c6};
-            border: 0px;
+            background-image: none;
+            background-color: rgba(42, 49, 61, 0.88);
+            color: @hello-text;
+            caret-color: @hello-text;
+            border: 1px solid @hello-border;
             border-radius: 18px;
             padding: 8px 12px;
+            box-shadow: none;
+            text-shadow: none;
           }
 
-          entry:focus {
-            border: 1px solid ${c.c8};
+          entry:focus,
+          entry:active {
+            background-image: none;
+            background-color: rgba(35, 42, 53, 0.94);
+            color: @hello-text;
+            border: 1px solid @hello-border-strong;
+            box-shadow: none;
+            outline: none;
           }
 
-          button {
-            background-color: alpha(${c.c2}, 0.8);
-            color: ${c.c6};
-            border: 0px;
+          button,
+          button:hover,
+          button:focus,
+          button:active,
+          button:checked {
+            background-image: none;
+            background-color: rgba(42, 49, 61, 0.88);
+            color: @hello-text;
+            border: 1px solid @hello-border;
             border-radius: 18px;
             padding: 8px 14px;
             font-size: 14px;
+            box-shadow: none;
+            text-shadow: none;
+            outline: none;
+            -gtk-icon-shadow: none;
           }
 
           button:hover {
-            background-color: alpha(${c.c3}, 0.88);
+            background-color: rgba(52, 63, 76, 0.94);
+            border-color: @hello-border-strong;
+          }
+
+          button:focus,
+          button:active,
+          button:checked {
+            background-color: rgba(35, 42, 53, 0.96);
+            border-color: @hello-border-strong;
+          }
+
+          button label,
+          button image {
+            color: @hello-text;
+            -gtk-icon-shadow: none;
           }
 
           #power-button {
             border-radius: 18px;
-            background-color: alpha(${c.c2}, 0.6);
-            border: 0px;
-            color: ${c.c6};
+            background-image: none;
+            background-color: rgba(42, 49, 61, 0.68);
+            border: 1px solid rgba(77, 152, 204, 0.38);
+            color: @hello-text;
             padding: 10px 16px;
             font-size: 16px;
           }
 
           #power-button:hover {
-            background-color: alpha(${c.c3}, 0.82);
+            background-color: rgba(52, 63, 76, 0.84);
+            border-color: @hello-border-strong;
           }
 
           #power-button:active {
-            background-color: alpha(${c.c9}, 0.28);
+            background-color: rgba(57, 186, 230, 0.22);
+            border-color: @hello-accent;
           }
 
           label {
-            color: ${c.c6};
+            color: @hello-text;
           }
 
           checkbutton {
-            color: ${c.c4};
+            color: @hello-muted;
             font-size: 13px;
           }
 
           checkbutton check {
-            background-color: alpha(${c.c2}, 0.8);
-            border: 0px;
+            background-image: none;
+            background-color: rgba(42, 49, 61, 0.88);
+            border: 1px solid @hello-border;
             border-radius: 6px;
+            box-shadow: none;
+          }
+
+          checkbutton check:checked,
+          checkbutton check:hover,
+          checkbutton check:focus {
+            background-image: none;
+            background-color: rgba(57, 186, 230, 0.24);
+            border-color: @hello-border-strong;
           }
 
           combobox,
-          combobox box,
           combobox button,
           #form-combo {
-            background-color: alpha(${c.c2}, 0.8);
-            color: ${c.c6};
+            background-image: none;
+            background-color: rgba(42, 49, 61, 0.88);
+            color: @hello-text;
             border-radius: 18px;
-            border: 0px;
+            border: 1px solid @hello-border;
+            box-shadow: none;
+            text-shadow: none;
+          }
+
+          combobox box,
+          combobox button box,
+          combobox button label,
+          combobox arrow {
+            background-image: none;
+            background-color: transparent;
+            border: none;
+            box-shadow: none;
+            text-shadow: none;
           }
 
           #welcome-label {
-            color: ${c.c6};
+            color: @hello-text;
             font-size: 48px;
             font-weight: 300;
           }
 
           #clock-label {
-            color: ${c.c8};
+            color: #73D0FF;
             font-family: monospace;
             font-size: 30px;
             letter-spacing: 0.05em;
           }
 
           #date-label {
-            color: ${c.c4};
+            color: @hello-muted;
             font-size: 18px;
           }
 
           #form-label {
-            color: ${c.c4};
+            color: @hello-muted;
             font-size: 14px;
           }
 
           #form-combo {
-            background-color: alpha(${c.c2}, 0.8);
+            background-color: rgba(42, 49, 61, 0.88);
           }
 
           #password-entry {
-            background-color: alpha(${c.c2}, 0.8);
-            color: ${c.c6};
+            background-color: rgba(42, 49, 61, 0.88);
+            color: @hello-text;
           }
 
           #login-button {
-            background-color: alpha(${c.c9}, 0.18);
-            color: ${c.c6};
-            border: 0px;
+            background-image: none;
+            background-color: @hello-accent-soft;
+            color: @hello-text;
+            border: 1px solid rgba(57, 186, 230, 0.52);
             border-radius: 18px;
             padding: 10px;
             font-size: 14px;
             margin-top: 4px;
+            box-shadow: none;
+            text-shadow: none;
+            outline: none;
           }
 
-          #login-button:hover {
-            background-color: alpha(${c.c9}, 0.28);
+          #login-button:hover,
+          #login-button:focus {
+            background-image: none;
+            background-color: @hello-accent-soft-hover;
+            border-color: @hello-accent-hover;
+          }
+
+          #login-button:active {
+            background-image: none;
+            background-color: rgba(77, 152, 204, 0.3);
+            border-color: #73D0FF;
           }
         '';
       };
