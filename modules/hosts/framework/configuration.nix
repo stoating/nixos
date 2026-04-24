@@ -192,7 +192,7 @@
           sleep = "sleep";
           reboot = "reboot";
           user = "user";
-          welcome = "<(^_^)>";
+          welcome = "hello";
         };
         "nwg-hello/nwg-hello.css".text = ''
           @define-color hello-bg #1F2430;
@@ -236,7 +236,7 @@
             border: 1px solid @hello-border;
             border-radius: 18px;
             padding: 8px 12px;
-            font-size: 16px;
+            font-size: 24px;
             box-shadow: none;
             text-shadow: none;
           }
@@ -262,7 +262,7 @@
             border: 1px solid @hello-border;
             border-radius: 18px;
             padding: 8px 14px;
-            font-size: 16px;
+            font-size: 24px;
             box-shadow: none;
             text-shadow: none;
             outline: none;
@@ -294,7 +294,7 @@
             border: 1px solid rgba(77, 152, 204, 0.38);
             color: @hello-text;
             padding: 10px 16px;
-            font-size: 18px;
+            font-size: 26px;
           }
 
           #power-button:hover {
@@ -309,12 +309,12 @@
 
           label {
             color: @hello-text;
-            font-size: 16px;
+            font-size: 24px;
           }
 
           checkbutton {
             color: @hello-muted;
-            font-size: 16px;
+            font-size: 24px;
           }
 
           checkbutton check {
@@ -341,7 +341,7 @@
             color: @hello-text;
             border-radius: 18px;
             border: 1px solid @hello-border;
-            font-size: 16px;
+            font-size: 24px;
             box-shadow: none;
             text-shadow: none;
           }
@@ -359,25 +359,25 @@
 
           #welcome-label {
             color: @hello-text;
-            font-size: 48px;
+            font-size: 56px;
             font-weight: 300;
           }
 
           #clock-label {
             color: #73D0FF;
             font-family: monospace;
-            font-size: 32px;
+            font-size: 40px;
             letter-spacing: 0.05em;
           }
 
           #date-label {
             color: @hello-muted;
-            font-size: 20px;
+            font-size: 28px;
           }
 
           #form-label {
             color: @hello-muted;
-            font-size: 16px;
+            font-size: 24px;
           }
 
           #form-combo {
@@ -387,6 +387,7 @@
           #password-entry {
             background-color: rgba(42, 49, 61, 0.88);
             color: @hello-text;
+            font-size: 22px;
           }
 
           #login-button {
@@ -396,7 +397,7 @@
             border: 1px solid rgba(57, 186, 230, 0.52);
             border-radius: 18px;
             padding: 10px;
-            font-size: 16px;
+            font-size: 24px;
             margin-top: 4px;
             box-shadow: none;
             text-shadow: none;
