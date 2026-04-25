@@ -57,6 +57,7 @@ in {
       # --- Windows ---
       "Mod+Q".close-window               = _: {};
       "Mod+F".fullscreen-window          = _: {};
+      "Mod+Shift+T".toggle-window-rule-opacity = _: {};
       "Mod+V".toggle-window-floating     = _: {};
       "Mod+Shift+V".switch-focus-between-floating-and-tiling = _: {};
 
