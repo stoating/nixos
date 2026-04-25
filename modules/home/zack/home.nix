@@ -5,11 +5,14 @@
       inputs.home-manager.nixosModules.home-manager
       self.nixosModules.compositor
       self.nixosModules.shell-desktop
+      self.nixosModules.startup
       self.nixosModules.zacks-niri
       self.nixosModules.zacks-monitors
       self.nixosModules.zacks-keyboard
       self.nixosModules.zacks-printer
       self.nixosModules.zacks-nas
+      self.nixosModules.zacks-elegant-grub2
+      self.nixosModules.zacks-plymouth
     ];
 
     # User chooses compositor
@@ -17,6 +20,12 @@
 
     # User chooses desktop shell
     shell-desktop.type = "noctalia";
+
+    # User chooses boot theme
+    startup = {
+      grub.theme = "elegant-grub2";
+      plymouth.enable = true;
+    };
 
     home-manager = {
       useGlobalPkgs = true;

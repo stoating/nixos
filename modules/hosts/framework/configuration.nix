@@ -10,49 +10,6 @@
           --replace-fail "$out/etc/nwg-hello" "/etc/nwg-hello"
       '';
     });
-    elegant-grub2-theme = pkgs.stdenv.mkDerivation {
-      pname = "elegant-grub2-theme";
-      version = "unstable-2026-04-21";
-
-      src = pkgs.fetchFromGitHub {
-        owner = "vinceliuice";
-        repo  = "Elegant-grub2-themes";
-        rev   = "92cdac334cf7bc5c1d68c2fbb266164653b4b502";
-        hash  = "sha256-fbZLWHxnLBrqBrS2MnM2G08HgEM2dmZvitiCERie0Cc=";
-      };
-
-      installPhase = ''
-        runHook preInstall
-
-        mkdir -p $out
-
-        # Fonts
-        cp -a common/terminus*.pf2   $out/
-        cp -a common/unifont-24.pf2  $out/
-
-        # Background (forest, window, left, dark)
-        cp -a backgrounds/backgrounds-forest/background-forest-window-left-dark.jpg $out/background.jpg
-
-        # Icons
-        cp -a assets/assets-icons-dark/icons-dark-2k $out/icons
-
-        # Theme layout
-        cp -a config/theme-window-left-dark-2k.txt $out/theme.txt
-
-        # Selection decorations
-        cp -a assets/assets-other/other-2k/select_e-forest-dark.png $out/select_e.png
-        cp -a assets/assets-other/other-2k/select_c-forest-dark.png $out/select_c.png
-        cp -a assets/assets-other/other-2k/select_w-forest-dark.png $out/select_w.png
-
-        # Info panel decoration (window-left for non-forest-alt variant)
-        cp -a assets/assets-other/other-2k/window-left.png $out/info.png
-
-        # NixOS logo
-        cp -a assets/assets-other/other-2k/Nixos.png $out/logo.png
-
-        runHook postInstall
-      '';
-    };
   in
   {
     imports = [
@@ -61,15 +18,6 @@
     ];
 
     boot = {
-      loader.efi.canTouchEfiVariables = true;
-      loader.grub = {
-        enable      = true;
-        efiSupport  = true;
-        device      = "nodev";
-        theme       = elegant-grub2-theme;
-        gfxmodeEfi  = "2560x1600,2560x1440,auto";
-      };
-      loader.timeout = 3;
       kernelPackages = pkgs.linuxPackages_latest;
       kernelParams = [ "quiet" "udev.log_level=3" "systemd.show_status=auto" ];
       consoleLogLevel = 3;
@@ -78,15 +26,6 @@
         systemd.enable = true;
         luks.devices."luks-e13d7e39-2fc5-4ce4-8f3c-420e2197a26b".device =
           "/dev/disk/by-uuid/e13d7e39-2fc5-4ce4-8f3c-420e2197a26b";
-      };
-      plymouth = {
-        enable = true;
-        theme = "angular_alt";
-        themePackages = with pkgs; [
-          (adi1090x-plymouth-themes.override {
-            selected_themes = [ "angular_alt" ];
-          })
-        ];
       };
     };
 
