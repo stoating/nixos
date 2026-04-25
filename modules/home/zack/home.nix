@@ -13,6 +13,7 @@
       self.nixosModules.zacks-nas
       self.nixosModules.zacks-elegant-grub2
       self.nixosModules.zacks-plymouth
+      self.nixosModules.zacks-nwg-hello
     ];
 
     # User chooses compositor
@@ -25,6 +26,7 @@
     startup = {
       grub.theme = "elegant-grub2";
       plymouth.enable = true;
+      nwg-hello.enable = true;
     };
 
     home-manager = {

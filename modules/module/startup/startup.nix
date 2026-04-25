@@ -3,7 +3,32 @@
     imports = [
       self.nixosModules.elegant-grub2
       self.nixosModules.plymouth
+      self.nixosModules.nwg-hello
     ];
+
+    options.startup.nwg-hello = {
+      enable = lib.mkEnableOption "nwg-hello greeter";
+      background = lib.mkOption {
+        type        = lib.types.nullOr lib.types.path;
+        default     = null;
+        description = "Background image path displayed by the greeter.";
+      };
+      settings = lib.mkOption {
+        type        = lib.types.attrs;
+        default     = {};
+        description = "Attribute set merged into the nwg-hello JSON config.";
+      };
+      i18n = lib.mkOption {
+        type        = lib.types.attrs;
+        default     = {};
+        description = "Attribute set merged into the nwg-hello locale file.";
+      };
+      css = lib.mkOption {
+        type        = lib.types.lines;
+        default     = "";
+        description = "CSS appended to nwg-hello.css (after background injection).";
+      };
+    };
 
     options.startup.grub = {
       theme = lib.mkOption {
