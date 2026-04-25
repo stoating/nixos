@@ -1,5 +1,5 @@
 { ... }: {
-  flake.nixosModules.zacks-nwg-hello = { ... }: {
+  flake.nixosModules.framework-nwg-hello = { ... }: {
     startup.nwg-hello = {
       background = ../assets/greeter-background.jpg;
 

@@ -3,6 +3,7 @@
   flake.nixosModules.framework-configuration = { pkgs, lib, config, ... }: {
     imports = [
       self.nixosModules.framework-hardware
+      self.nixosModules.framework-startup
       self.nixosModules.home-zack
     ];
 

@@ -1,5 +1,5 @@
 { ... }: {
-  flake.nixosModules.zacks-plymouth = { pkgs, ... }: {
+  flake.nixosModules.framework-plymouth = { pkgs, ... }: {
     startup.plymouth = {
       theme = "angular_alt";
       themePackages = [
