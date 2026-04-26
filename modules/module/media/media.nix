@@ -8,6 +8,8 @@
       self.homeModules.kdenlive
       self.homeModules.obs-studio
       self.homeModules.pear-desktop
+      self.homeModules.grim
+      self.homeModules.slurp
     ];
 
     options.media.programs = {
@@ -18,6 +20,8 @@
       kdenlive.enable     = lib.mkEnableOption "Kdenlive";
       obs-studio.enable   = lib.mkEnableOption "OBS Studio";
       pear-desktop.enable = lib.mkEnableOption "Pear Desktop";
+      grim.enable         = lib.mkEnableOption "grim";
+      slurp.enable        = lib.mkEnableOption "slurp";
     };
   };
 }

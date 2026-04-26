@@ -2,6 +2,14 @@
 
 Personal NixOS flake configuration for two hosts: a Framework laptop and a Hetzner VPS.
 
+## Screenshots
+
+![desktop](assets/screenshot.png)
+
+| greeter | boot | splash |
+|---------|-------------|-----------------|
+| ![Greeter](assets/greeter.png) | ![Boot](assets/boot.PNG) | ![Loading screen](assets/loading-screen.png) |
+
 ## Hosts
 
 | Host | Machine | User | Purpose |

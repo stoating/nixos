@@ -131,6 +131,7 @@
           btop.enable      = true;
           bandwhich.enable = true;
           gping.enable     = true;
+          fastfetch.enable = true;
         };
 
         shell-cli.programs = {
@@ -162,6 +163,8 @@
           kdenlive.enable     = true;
           obs-studio.enable   = true;
           pear-desktop.enable = true;
+          grim.enable         = true;
+          slurp.enable        = true;
         };
 
         theming = {
