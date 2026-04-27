@@ -165,6 +165,7 @@
           pear-desktop.enable = true;
           grim.enable         = true;
           slurp.enable        = true;
+          wl-clipboard.enable = true;
         };
 
         theming = {

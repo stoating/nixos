@@ -10,6 +10,7 @@
       self.homeModules.pear-desktop
       self.homeModules.grim
       self.homeModules.slurp
+      self.homeModules.wl-clipboard
     ];
 
     options.media.programs = {
@@ -22,6 +23,7 @@
       pear-desktop.enable = lib.mkEnableOption "Pear Desktop";
       grim.enable         = lib.mkEnableOption "grim";
       slurp.enable        = lib.mkEnableOption "slurp";
+      wl-clipboard.enable = lib.mkEnableOption "wl-clipboard";
     };
   };
 }

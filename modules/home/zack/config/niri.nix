@@ -47,6 +47,9 @@ in {
       "Mod+F1".show-hotkey-overlay = _: {};
       "Mod+Tab".toggle-overview    = _: {};
 
+      # --- Screenshot ---
+      "Print".spawn-sh = ''grim -g "$(slurp)" - | wl-copy'';
+
       # --- Launchers ---
       "Mod+Return".spawn-sh = lib.getExe pkgs.ghostty;
       "Mod+G".spawn-sh      = lib.getExe pkgs.google-chrome;
