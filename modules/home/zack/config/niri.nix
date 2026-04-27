@@ -74,6 +74,10 @@ in {
       "Mod+BracketLeft".consume-or-expel-window-left   = _: {};
       "Mod+BracketRight".consume-or-expel-window-right = _: {};
 
+      # --- Session ---
+      "Mod+L".spawn = [ "noctalia-shell" "ipc" "call" "lockScreen" "lock" ];
+      "Mod+Shift+S".spawn        = [ "systemctl" "suspend" ];
+
       # --- Wallpaper ---
       "Mod+Shift+W".spawn = [ "noctalia-shell" "ipc" "call" "wallpaper" "random" "" ];
 

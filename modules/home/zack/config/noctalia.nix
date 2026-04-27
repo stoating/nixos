@@ -39,6 +39,10 @@
         largeButtonsStyle  = false;
         countdownDuration  = 5000;
       };
+
+      idle = {
+        enabled = true;
+      };
     };
 
     home.file.".cache/noctalia/wallpapers.json" = {
