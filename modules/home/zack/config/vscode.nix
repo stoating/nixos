@@ -39,6 +39,7 @@
         davidanson.vscode-markdownlint
         esbenp.prettier-vscode
         github.copilot-chat
+        github.vscode-github-actions
         irongeek.vscode-env
         jnoortheen.nix-ide
         redhat.vscode-yaml
