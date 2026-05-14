@@ -79,6 +79,14 @@
           command = "paredit.slurpSexpForward";
           when = "calva:keybindingsEnabled && editorTextFocus && editorLangId == 'clojure' && paredit:keyMap =~ /original|strict/";
         }
+        {
+          key = "alt+left";
+          command = "workbench.action.navigateBack";
+        }
+        {
+          key = "alt+right";
+          command = "workbench.action.navigateForward";
+        }
       ];
       userSettings = {
         "workbench.colorTheme" = theme.vscode;
