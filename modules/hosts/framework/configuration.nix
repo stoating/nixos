@@ -1,6 +1,14 @@
-{ self, ... }: {
+{ self, inputs, ... }: {
 
-  flake.nixosModules.framework-configuration = { pkgs, lib, config, ... }: {
+  flake.nixosModules.framework-configuration = { pkgs, lib, config, ... }:
+    let
+      # Temporary rollback: Bluetooth stopped turning on after the flake update.
+      # Remove this pin after re-testing a newer kernel on a future update.
+      temporaryBluetoothKernelRollbackPkgs = import inputs.bluetooth-kernel-rollback-nixpkgs {
+        inherit (pkgs.stdenv.hostPlatform) system;
+        config.allowUnfree = true;
+      };
+    in {
     imports = [
       self.nixosModules.framework-hardware
       self.nixosModules.framework-startup
@@ -8,7 +16,7 @@
     ];
 
     boot = {
-      kernelPackages = pkgs.linuxPackages_latest;
+      kernelPackages = temporaryBluetoothKernelRollbackPkgs.linuxPackages_latest;
       kernelParams = [ "quiet" "udev.log_level=3" "systemd.show_status=auto" ];
       consoleLogLevel = 3;
       initrd = {

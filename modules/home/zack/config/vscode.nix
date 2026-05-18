@@ -19,7 +19,7 @@
           src = pkgs.fetchurl {
             name = "anthropic-claude-code.vsix";
             url = "https://marketplace.visualstudio.com/_apis/public/gallery/publishers/anthropic/vsextensions/claude-code/2.1.114/vspackage";
-            hash = "sha256-rcEbeYsyhbhh5wj6Mo3kz2+K3uZe5XMBKpwmSaB9Pgc=";
+            hash = "sha256-TfVradC9ZjfLBp8QvZ0AptCS9j2ogzSlsRXxksp+N9I=";
             curlOptsList = [ "--compressed" ];
           };
         }))

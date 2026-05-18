@@ -4,14 +4,14 @@
       enable = true;
       enableDefaultConfig = false;
 
-      matchBlocks = {
+      settings = {
         "*" = {
-          addKeysToAgent = "yes";
-          serverAliveInterval = 60;
+          AddKeysToAgent = "yes";
+          ServerAliveInterval = 60;
         };
         "github.com" = {
-          user = "git";
-          identityFile = "~/.ssh/id_ed25519";
+          User = "git";
+          IdentityFile = "~/.ssh/id_ed25519";
         };
       };
     };

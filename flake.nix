@@ -8,6 +8,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    bluetooth-kernel-rollback-nixpkgs.url = "github:nixos/nixpkgs/4bd9165a9165d7b5e33ae57f3eecbcb28fb231c9";
 
     flake-parts.url = "github:hercules-ci/flake-parts";
     import-tree.url = "github:vic/import-tree";
