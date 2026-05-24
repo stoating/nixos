@@ -5,6 +5,7 @@
       inputs.home-manager.nixosModules.home-manager
       self.nixosModules.compositor
       self.nixosModules.shell-desktop
+      self.nixosModules.networking
       self.nixosModules.zacks-niri
       self.nixosModules.zacks-monitors
       self.nixosModules.zacks-keyboard
@@ -17,6 +18,9 @@
 
     # User chooses desktop shell
     shell-desktop.type = "noctalia";
+
+    # System-level networking services
+    networking.programs.tailscale.enable = true;
 
     home-manager = {
       useGlobalPkgs = true;
