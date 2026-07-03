@@ -88,6 +88,15 @@
     };
 
     services = {
+      openssh = {
+        enable = true;
+        settings = {
+          PasswordAuthentication        = true;   # TODO: flip to false once iPhone public key is in users.users.zack.openssh.authorizedKeys.keys
+          KbdInteractiveAuthentication  = false;
+          PermitRootLogin               = "no";
+          UseDns                        = false;
+        };
+      };
       libinput.touchpad.naturalScrolling = true;
       xserver = {
         enable = true;

@@ -41,6 +41,12 @@
           version   = "0.0.3";
           sha256    = "1spj01dpfggfchwly3iyfm2ak618q2wqd90qx5ndvkj3a7x6rxwn";
         })
+        (pkgs.vscode-utils.extensionFromVscodeMarketplace {
+          publisher = "betterthantomorrow";
+          name      = "calva-power-tools";
+          version   = "0.0.11";
+          sha256    = "0s6c9s8fc7awnzbgr83xaasnplsmyilwl1ax7rd6m5fm2ncyb184";
+        })
         bbenoist.nix
         betterthantomorrow.calva
         davidanson.vscode-markdownlint
