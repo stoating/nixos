@@ -13,7 +13,7 @@
     import-tree.url = "github:vic/import-tree";
 
     wrapper-modules.url = "github:BirdeeHub/nix-wrapper-modules";
-    noctalia.url = "github:noctalia-dev/noctalia-shell/v4.7.2";
+    noctalia.url = "github:noctalia-dev/noctalia-shell/v4.7.7";
 
     home-manager = {
       url = "github:nix-community/home-manager";
