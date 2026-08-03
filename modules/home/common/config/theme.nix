@@ -29,7 +29,7 @@ let
       bat      = "Nord";
       delta    = "Nord";
       noctalia = "Nord";
-      gtk      = "Nordic";
+      gtk      = "adw-gtk3-dark";
     };
 
     Ayu = {
@@ -57,7 +57,7 @@ let
       bat      = "Ayu Mirage";
       delta    = "Ayu Mirage";
       noctalia = "Ayu";
-      gtk      = "Ayu-Dark";
+      gtk      = "adw-gtk3-dark";
     };
   };
 

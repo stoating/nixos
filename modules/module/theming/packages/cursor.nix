@@ -24,6 +24,7 @@
 
     config = lib.mkIf (config.theming.cursor.name != "") {
       home.pointerCursor = {
+        enable  = true;
         name    = config.theming.cursor.name;
         package = packageForName config.theming.cursor.name;
         size    = config.theming.cursor.size;
