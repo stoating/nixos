@@ -6,6 +6,7 @@
       self.nixosModules.wally-cli
       self.nixosModules.printer
       self.nixosModules.nas
+      self.nixosModules.iphone
     ];
   };
 }

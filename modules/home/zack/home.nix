@@ -11,6 +11,7 @@
       self.nixosModules.zacks-keyboard
       self.nixosModules.zacks-printer
       self.nixosModules.zacks-nas
+      self.nixosModules.zacks-iphone
     ];
 
     # User chooses compositor
@@ -46,6 +47,7 @@
           self.homeModules.theming
           self.homeModules.zacks-chromium
           self.homeModules.zacks-cursor
+          self.homeModules.zacks-mpv
           self.homeModules.zacks-noctalia
           self.homeModules.zacks-restic
           self.homeModules.zacks-vscode
@@ -165,8 +167,10 @@
           discord.enable      = true;
           ffmpeg.enable       = true;
           kdenlive.enable     = true;
+          mpv.enable          = true;
           obs-studio.enable   = true;
           pear-desktop.enable = true;
+          rapid-photo-downloader.enable = true;
           grim.enable         = true;
           slurp.enable        = true;
           wl-clipboard.enable = true;
