@@ -133,7 +133,7 @@
       dates     = "weekly";
     };
     systemd.services.nix-gc.preStart = ''
-      ${config.nix.package}/bin/nix-env --profile /nix/var/nix/profiles/system --delete-generations +10
+      ${config.nix.package}/bin/nix-env --profile /nix/var/nix/profiles/system --delete-generations +20
     '';
 
     nixpkgs.config.allowUnfree = true;
