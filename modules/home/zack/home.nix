@@ -26,6 +26,10 @@
     home-manager = {
       useGlobalPkgs = true;
       useUserPackages = true;
+
+      # Apps rewriting HM-owned files (e.g. Chrome claiming default browser)
+      # replace its symlinks with plain files and abort activation.
+      backupFileExtension = "hm-bak";
       users.zack = {
         imports = [
           self.homeModules.ai
@@ -47,7 +51,7 @@
           self.homeModules.theming
           self.homeModules.zacks-chromium
           self.homeModules.zacks-cursor
-          self.homeModules.zacks-mpv
+          self.homeModules.zacks-mimeapps
           self.homeModules.zacks-noctalia
           self.homeModules.zacks-restic
           self.homeModules.zacks-vscode

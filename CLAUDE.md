@@ -22,7 +22,7 @@ This is a NixOS flake with two hosts: `framework` (laptop, user `zack`) and `quo
 | `flake-parts` | Structures flake outputs |
 | `import-tree` | Auto-discovers `modules/**/*.nix` |
 | `home-manager` | Integrated (not standalone) via `nixosModules.home-manager`; follows nixpkgs |
-| `noctalia` | Desktop shell package (pinned to v4.7.2) |
+| `noctalia` | Desktop shell package (pinned to v4.7.7; a tag, so `nix flake update` never moves it) |
 | `wrapper-modules` | Used to wrap niri with custom settings |
 | `claude-desktop` | Claude Desktop Linux build |
 | `vscode` | Follows nixpkgs by default; pin by changing URL |

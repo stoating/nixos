@@ -58,9 +58,30 @@
         ensureDefaultPrinter = config.printers.default;
       };
 
-      systemd.services.ensure-printers = {
+      # nixpkgs provisions printers from cups.service's postStart, which runs
+      # under `set -e` — an asleep printer would otherwise take the scheduler
+      # down. Definitions persist in /var/lib/cups, so a failed re-add is safe.
+      systemd.services.cups = {
         after = [ "network-online.target" ];
         wants = [ "network-online.target" ];
+
+        postStart = lib.mkForce (
+          lib.concatMapStringsSep "\n"
+            (p: ''
+              lpadmin -p ${lib.escapeShellArg p.name} -E \
+                -L ${lib.escapeShellArg p.location} \
+                -m everywhere \
+                -o PageSize=${lib.escapeShellArg p.pageSize} \
+                -v ${lib.escapeShellArg p.deviceUri} \
+                || echo "cups: could not provision ${p.name} (offline?) — keeping existing definition"
+            '')
+            config.printers.devices
+          + lib.optionalString (config.printers.default != "") ''
+
+            lpadmin -d ${lib.escapeShellArg config.printers.default} \
+              || echo "cups: could not set default printer ${config.printers.default}"
+          ''
+        );
       };
     };
   };
