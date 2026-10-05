@@ -13,7 +13,12 @@
     import-tree.url = "github:vic/import-tree";
 
     wrapper-modules.url = "github:BirdeeHub/nix-wrapper-modules";
-    noctalia.url = "github:noctalia-dev/noctalia-shell/v4.7.7";
+    # follows nixpkgs so noctalia-qs links the same mesa as /run/opengl-driver;
+    # a separate nixpkgs drifts and breaks EGL ("Failed to create RHI")
+    noctalia = {
+      url = "github:noctalia-dev/noctalia-shell/v4.7.7";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     home-manager = {
       url = "github:nix-community/home-manager";

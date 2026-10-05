@@ -125,11 +125,16 @@
 
     systemd.settings.Manager.DefaultTimeoutStopSec = "5s";
 
+    # keep by count, not age: rebuilds are irregular, so an age window can
+    # leave only 1–2 generations. nix-collect-garbage has no "keep N", so
+    # trim the system profile first, then collect unreferenced paths.
     nix.gc = {
       automatic = true;
       dates     = "weekly";
-      options   = "--delete-older-than 30d";
     };
+    systemd.services.nix-gc.preStart = ''
+      ${config.nix.package}/bin/nix-env --profile /nix/var/nix/profiles/system --delete-generations +10
+    '';
 
     nixpkgs.config.allowUnfree = true;
 
